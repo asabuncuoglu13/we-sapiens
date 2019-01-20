@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--Current Width : 360.0 START -->
+
+    // -- Minus Unit -- //
+
+    // -- Unit -- //
+    <dimen name="unit2">2.00dp</dimen>
+    <dimen name="unit3">3.00dp</dimen>
+    <dimen name="unit4">4.00dp</dimen>
+    <dimen name="unit5">5.00dp</dimen>
+    <dimen name="unit7">7.00dp</dimen>
+    <dimen name="unit8">8.00dp</dimen>
+    <dimen name="unit9">9.00dp</dimen>
+    <dimen name="unit10">10.00dp</dimen>
+    <dimen name="unit12">12.00dp</dimen>
+    <dimen name="unit14">14.00dp</dimen>
+    <dimen name="unit15">15.00dp</dimen>
+    <dimen name="unit16">16.00dp</dimen>
+    <dimen name="unit18">18.00dp</dimen>
+    <dimen name="unit20">20.00dp</dimen>
+    <dimen name="unit24">24.00dp</dimen>
+    <dimen name="unit30">30.00dp</dimen>
+    <dimen name="unit35">35.00dp</dimen>
+    <dimen name="unit40">40.00dp</dimen>
+    <dimen name="unit50">50.00dp</dimen>
+    <dimen name="unit60">60.00dp</dimen>
+
+    <dimen name="unit100">100.00dp</dimen>
+
+    <dimen name="unit105">105.00dp</dimen>
+
+    <dimen name="unit120">120.00dp</dimen>
+
+    <dimen name="unit140">140.00dp</dimen>
+
+    <dimen name="unit150">150.00dp</dimen>
+
+    <dimen name="unit160">160.00dp</dimen>
+
+    <dimen name="unit200">200.00dp</dimen>
+
+    <dimen name="unit220">220.00dp</dimen>
+
+    <dimen name="unit260">260.00dp</dimen>
+
+    <dimen name="unit300">300.00dp</dimen>
+
+    <!--Current Width : 360.0 END -->
+
+</resources>

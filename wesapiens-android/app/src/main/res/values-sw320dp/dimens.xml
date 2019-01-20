@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Current Width : 320.0 START -->
+
+    // -- Minus Unit -- //
+
+    // -- Unit -- //
+    <dimen name="unit2">1.78dp</dimen>
+    <dimen name="unit3">2.67dp</dimen>
+    <dimen name="unit4">3.56dp</dimen>
+    <dimen name="unit5">4.44dp</dimen>
+    <dimen name="unit7">6.22dp</dimen>
+    <dimen name="unit8">7.11dp</dimen>
+    <dimen name="unit9">8.00dp</dimen>
+    <dimen name="unit10">8.89dp</dimen>
+    <dimen name="unit12">10.67dp</dimen>
+    <dimen name="unit14">12.44dp</dimen>
+    <dimen name="unit15">13.33dp</dimen>
+    <dimen name="unit16">14.22dp</dimen>
+    <dimen name="unit18">16.00dp</dimen>
+    <dimen name="unit20">17.78dp</dimen>
+    <dimen name="unit24">21.33dp</dimen>
+    <dimen name="unit30">26.67dp</dimen>
+    <dimen name="unit35">31.11dp</dimen>
+    <dimen name="unit40">35.56dp</dimen>
+    <dimen name="unit50">44.44dp</dimen>
+    <dimen name="unit60">53.33dp</dimen>
+
+    <dimen name="unit100">88.89dp</dimen>
+
+    <dimen name="unit105">93.33dp</dimen>
+
+    <dimen name="unit120">106.67dp</dimen>
+
+    <dimen name="unit140">124.44dp</dimen>
+
+    <dimen name="unit150">133.33dp</dimen>
+
+    <dimen name="unit160">142.22dp</dimen>
+
+    <dimen name="unit200">177.78dp</dimen>
+
+    <dimen name="unit220">195.56dp</dimen>
+
+    <dimen name="unit260">231.11dp</dimen>
+
+    <dimen name="unit300">266.67dp</dimen>
+
+    <!--Current Width : 320.0 END -->
+</resources>
