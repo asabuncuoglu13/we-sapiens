@@ -1,6 +1,11 @@
 package com.alpay.wesapiens.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Question {
+
+    public static List<Question> questionList = new ArrayList<>();
 
     String title;
     String text;

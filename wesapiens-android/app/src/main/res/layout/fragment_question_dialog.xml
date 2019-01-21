@@ -1,37 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/question_dialog_frame"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/unit20"
+    android:background="@color/lightGrey">
 
-    <LinearLayout
-        android:padding="@dimen/unit5"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_margin="@dimen/unit5">
 
         <ImageView
             android:id="@+id/question_prev_page_button"
-            android:layout_gravity="center_vertical"
             android:layout_width="@dimen/unit30"
             android:layout_height="@dimen/unit30"
-            app:srcCompat="@drawable/left_arrow"/>
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            app:srcCompat="@drawable/left_arrow" />
 
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/question_edittext"
-            android:layout_width="@dimen/unit150"
-            android:layout_height="@dimen/unit50"
-            android:hint="Hint text"
-            android:inputType="numberDecimal"/>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/unit15"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/question_dialog_title"
+                style="@style/DialogTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="@dimen/unit5"
+                tools:text="Dialog Title" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/md_black_1000" />
+
+            <TextView
+                android:id="@+id/question_dialog_body"
+                style="@style/DialogBody"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="@dimen/unit5"
+                tools:text="@tools:sample/lorem" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/question_edittext"
+                android:layout_width="@dimen/unit150"
+                android:layout_height="@dimen/unit50"
+                android:layout_gravity="center_horizontal"
+                android:inputType="numberDecimal"
+                tools:hint="Hint text" />
+
+            <Button
+                android:id="@+id/question_submit_button"
+                style="@style/DialogButton"
+                android:layout_width="@dimen/unit120"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/question_submit_button_text" />
+
+        </LinearLayout>
 
         <ImageView
             android:id="@+id/question_next_page_button"
-            android:layout_gravity="center_vertical"
             android:layout_width="@dimen/unit30"
             android:layout_height="@dimen/unit30"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             app:srcCompat="@drawable/right_arrow" />
 
-    </LinearLayout>
+    </RelativeLayout>
+
 </FrameLayout>

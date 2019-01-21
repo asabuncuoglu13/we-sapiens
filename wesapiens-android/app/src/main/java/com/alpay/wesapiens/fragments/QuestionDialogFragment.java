@@ -1,5 +1,6 @@
 package com.alpay.wesapiens.fragments;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -16,20 +17,40 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
+import com.alpay.wesapiens.HomeActivity;
 import com.alpay.wesapiens.R;
 import com.alpay.wesapiens.listener.OnSwipeTouchListener;
+import com.alpay.wesapiens.models.Question;
+
+import org.w3c.dom.Text;
 
 public class QuestionDialogFragment extends DialogFragment {
 
     public View view;
     private Unbinder unbinder;
+    private String mAnswer;
+    private String mQuestionTitle;
+    private String mQuestionBody;
+    private int mQuestionListSize;
+
+    @BindView(R.id.question_dialog_title)
+    TextView questionDialogTitle;
+
+    @BindView(R.id.question_dialog_body)
+    TextView questionDialogBody;
 
     @BindView(R.id.question_edittext)
     EditText questionEditText;
 
     @BindView(R.id.question_dialog_frame)
     FrameLayout questionDialogFrame;
+
+    @OnClick(R.id.question_submit_button)
+    public void submitButtonAction(){
+        checkAnswer();
+    }
 
     @OnClick(R.id.question_next_page_button)
     public void nextButtonAction(){
@@ -42,13 +63,16 @@ public class QuestionDialogFragment extends DialogFragment {
     }
 
     public QuestionDialogFragment() {
+
     }
 
-    public static QuestionDialogFragment newInstance(String title) {
+    public interface QuestionDialogListener {
+        void onFinishDialog(String inputText);
+    }
+
+
+    public static QuestionDialogFragment newInstance() {
         QuestionDialogFragment questionDialogFragment = new QuestionDialogFragment();
-        Bundle args = new Bundle();
-        args.putString("title", title);
-        questionDialogFragment.setArguments(args);
         return questionDialogFragment;
     }
 
@@ -70,16 +94,23 @@ public class QuestionDialogFragment extends DialogFragment {
                 super.onSwipeRight();
             }
         });
+        questionDialogTitle.setText(mQuestionTitle);
+        questionDialogBody.setText(mQuestionBody);
         return view;
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        String title = getArguments().getString("title", "Enter Name");
-        getDialog().setTitle(title);
         questionEditText.requestFocus();
         getDialog().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+    }
+
+    @Override
+    public void onDismiss(DialogInterface dialog) {
+        QuestionDialogListener listener = (QuestionDialogListener) getActivity()555;
+        listener.onFinishDialog(questionEditText.getText().toString());
+        super.onDismiss(dialog);
     }
 
     @Override
@@ -88,11 +119,35 @@ public class QuestionDialogFragment extends DialogFragment {
         unbinder.unbind();
     }
 
+    public void setQuestionDialogTitle(String title){
+        mQuestionTitle = title;
+    }
+
+    public void setQuestionDialogBody(String body){
+        mQuestionBody = body;
+    }
+
+    public void setQuestionAnswer(String answer){
+        mAnswer = answer;
+    }
+
+    public void setQuestionListSize(int size){
+        mQuestionListSize = size;
+    }
+
+    private void checkAnswer(){
+        dismiss();
+    }
+
     private void nextPage(){
 
     }
 
     private void previousPage(){
+
+    }
+
+    public void inflateError(){
 
     }
 
