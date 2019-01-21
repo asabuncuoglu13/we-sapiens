@@ -1,4 +1,6 @@
-package com.alpay.wesapiens.models;
+package com.alpay.wesapiens.utils;
+
+import com.alpay.wesapiens.models.Question;
 
 import java.util.List;
 

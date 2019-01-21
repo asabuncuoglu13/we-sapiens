@@ -26,14 +26,17 @@ import com.alpay.wesapiens.models.Question;
 
 import org.w3c.dom.Text;
 
+import java.util.Iterator;
+
 public class QuestionDialogFragment extends DialogFragment {
 
     public View view;
     private Unbinder unbinder;
     private String mAnswer;
     private String mQuestionTitle;
-    private String mQuestionBody;
+    private String[] mQuestionBody;
     private int mQuestionListSize;
+    private int mCurrentBodyPosition = 0;
 
     @BindView(R.id.question_dialog_title)
     TextView questionDialogTitle;
@@ -95,7 +98,7 @@ public class QuestionDialogFragment extends DialogFragment {
             }
         });
         questionDialogTitle.setText(mQuestionTitle);
-        questionDialogBody.setText(mQuestionBody);
+        questionDialogBody.setText(mQuestionBody[0]);
         return view;
     }
 
@@ -108,7 +111,7 @@ public class QuestionDialogFragment extends DialogFragment {
 
     @Override
     public void onDismiss(DialogInterface dialog) {
-        QuestionDialogListener listener = (QuestionDialogListener) getActivity()555;
+        QuestionDialogListener listener = (QuestionDialogListener) getActivity();
         listener.onFinishDialog(questionEditText.getText().toString());
         super.onDismiss(dialog);
     }
@@ -123,7 +126,7 @@ public class QuestionDialogFragment extends DialogFragment {
         mQuestionTitle = title;
     }
 
-    public void setQuestionDialogBody(String body){
+    public void setQuestionDialogBody(String[] body){
         mQuestionBody = body;
     }
 
@@ -140,11 +143,20 @@ public class QuestionDialogFragment extends DialogFragment {
     }
 
     private void nextPage(){
-
+        if(mCurrentBodyPosition < mQuestionBody.length -1){
+            mCurrentBodyPosition++;
+            questionDialogBody.setText(mQuestionBody[mCurrentBodyPosition]);
+        }
+        if(mCurrentBodyPosition == mQuestionBody.length -1){
+            questionEditText.setVisibility(View.VISIBLE);
+        }
     }
 
     private void previousPage(){
-
+        if(mCurrentBodyPosition > 0){
+            mCurrentBodyPosition--;
+            questionDialogBody.setText(mQuestionBody[mCurrentBodyPosition]);
+        }
     }
 
     public void inflateError(){

@@ -8,12 +8,12 @@ public class Question {
     public static List<Question> questionList = new ArrayList<>();
 
     String title;
-    String text;
+    String[] bodyTextArray;
     String answer;
 
-    public Question(String title, String text, String answer) {
+    public Question(String title, String[] bodyTextArray, String answer) {
         this.title = title;
-        this.text = text;
+        this.bodyTextArray = bodyTextArray;
         this.answer = answer;
     }
 
@@ -25,12 +25,12 @@ public class Question {
         this.title = title;
     }
 
-    public String getText() {
-        return text;
+    public String[] getBodyTextArray() {
+        return bodyTextArray;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setBodyTextArray(String[] bodyTextArray) {
+        this.bodyTextArray = bodyTextArray;
     }
 
     public String getAnswer() {

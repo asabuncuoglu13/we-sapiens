@@ -27,7 +27,7 @@ public class QuestionDialogAdapter {
 
     public QuestionDialogFragment prepareQuestionFragment(int position) {
         questionDialogFragment.setQuestionDialogTitle(questionList.get(position).getTitle());
-        questionDialogFragment.setQuestionDialogBody(questionList.get(position).getText());
+        questionDialogFragment.setQuestionDialogBody(questionList.get(position).getBodyTextArray());
         questionDialogFragment.setQuestionAnswer(questionList.get(position).getAnswer());
         return questionDialogFragment;
     }
@@ -39,9 +39,9 @@ public class QuestionDialogAdapter {
 
     private void populateQuestionList(){
         Question question = new Question(
-                        appCompatActivity.getResources().getString(R.string.app_name),
-                        appCompatActivity.getResources().getString(R.string.app_name),
-                        appCompatActivity.getResources().getString(R.string.app_name));
+                        appCompatActivity.getResources().getString(R.string.question1_title),
+                        appCompatActivity.getResources().getStringArray(R.array.question1_body),
+                        appCompatActivity.getResources().getString(R.string.question1_answer));
         Question.questionList.add(question);
     }
 }

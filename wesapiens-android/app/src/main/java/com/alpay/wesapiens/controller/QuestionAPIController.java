@@ -3,8 +3,7 @@ package com.alpay.wesapiens.controller;
 import java.util.List;
 
 import com.alpay.wesapiens.adapter.QuestionDialogAdapter;
-import com.alpay.wesapiens.fragments.QuestionDialogFragment;
-import com.alpay.wesapiens.models.FirebaseAPI;
+import com.alpay.wesapiens.utils.FirebaseAPI;
 import com.alpay.wesapiens.models.Question;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

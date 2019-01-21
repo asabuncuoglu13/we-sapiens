@@ -1,6 +1,8 @@
 package com.alpay.wesapiens;
 
 import android.os.Bundle;
+import android.os.Debug;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.Toast;
 

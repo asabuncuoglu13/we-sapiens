@@ -2,4 +2,13 @@
     <string name="app_name">wesapiens</string>
     <string name="question_submit_button_text">OK</string>
     <string name="internet_connection_error">İnternet bağlantısı kurulamadı. Daha çok içerik görmek için internete bağlan!</string>
+
+    <string name="question1_title">İlk Balta</string>
+    <string-array name="question1_body">
+        <item>Atalarımız çevrelerindeki nesneleri kendi amaçları için kullanmaya başladığında, doğa üstündeki güçlerini yavaş yavaş kanıtlamaya başladılar.</item>
+        <item>Mesela, bir taşı sivrilterek, barınak yapmak için gerekli ağaç dallarını çok daha rahat kırabildiklerini keşfettiler.</item>
+        <item>Bu taşı sivriltmek, uyguladığı kuvveti çok daha küçük bir alana etkilediği için daha rahat kesebiliyordu.</item>
+        <item>Peki, diyelim ki bu bir zeytin ağacı ve bir kesik açmak için en azından 500lük bir basınca ihtiyacımız var. Baltanın değdiği alan kaç cm2 olmalıdır?</item>
+    </string-array>
+    <string name="question1_answer">500</string>
 </resources>
