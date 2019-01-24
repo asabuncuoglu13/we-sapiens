@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ProgressBar
+            android:id="@+id/storyboard_progressbar"
+            android:layout_width="@dimen/unit120"
+            android:layout_height="@dimen/unit120"
+            android:layout_centerInParent="true"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/story_build_color"
+            android:indeterminateTintMode="src_atop" />
+
+
+        <com.alpay.wesapiens.view.AutofitRecyclerView
+            android:id="@+id/storyboard_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <RelativeLayout
+            android:id="@+id/new_frame_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/unit5"
+            android:background="@drawable/options_bubble_pink"
+            android:padding="@dimen/unit15"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/new_chapter_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginBottom="@dimen/unit5"
+                android:clickable="true" />
+
+            <TextView
+                android:id="@+id/new_frame_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/new_chapter_button"
+                android:clickable="true" />
+
+        </RelativeLayout>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/run_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="@dimen/unit14"
+            android:tint="@color/white"
+            app:backgroundTint="@color/story_build_color"
+            app:srcCompat="@drawable/right_arrow" />
+
+    </RelativeLayout>
+
+</FrameLayout>

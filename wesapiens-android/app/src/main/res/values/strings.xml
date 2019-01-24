@@ -3,6 +3,11 @@
     <string name="question_submit_button_text">OK</string>
     <string name="internet_connection_error">Internet connection cannot established. Connect to see more activities and stories!</string>
 
+    <!-- Home Fragment -->
+    <string name="play_button">PLAY</string>
+    <string name="create_button">Create Your Module</string>
+
+    <!-- Questions -->
     <string name="question1_title">İlk Balta</string>
     <string-array name="question1_body">
         <item>Atalarımız çevrelerindeki nesneleri kendi amaçları için kullanmaya başladığında, doğa üstündeki güçlerini yavaş yavaş kanıtlamaya başladılar.</item>
