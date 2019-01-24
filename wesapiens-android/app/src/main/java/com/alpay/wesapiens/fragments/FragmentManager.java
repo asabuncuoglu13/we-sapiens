@@ -14,10 +14,10 @@ public class FragmentManager {
     public static void openFragment(AppCompatActivity appCompatActivity, String fragmentID) {
         FragmentTransaction ft = appCompatActivity.getSupportFragmentManager().beginTransaction();
         if (fragmentID.contentEquals(CREATE_GAME)) {
-            CreateGameFragment createGameFragment = new CreateGameFragment();
+            CreateGameFragment createGameFragment = CreateGameFragment.newInstance();
             ft.replace(R.id.fragment_container, createGameFragment);
         } else if (fragmentID.contentEquals(HOME)) {
-            HomeFragment homeFragment = new HomeFragment();
+            HomeFragment homeFragment = HomeFragment.newInstance();
             ft.replace(R.id.fragment_container, homeFragment);
         }
         ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);

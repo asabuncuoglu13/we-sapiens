@@ -19,6 +19,10 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
+    <style name="CreateGameEditText" parent="Widget.AppCompat.EditText">
+        <item name="android:textSize">@dimen/unit12</item>
+    </style>
+
 
     <style name="homeButtonText" >
         <item name="android:layout_width" >fill_parent</item>

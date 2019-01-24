@@ -12,7 +12,7 @@
         android:orientation="vertical">
 
         <Button
-            android:background="@drawable/red_button"
+            android:background="@drawable/play_button"
             android:id="@+id/play_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

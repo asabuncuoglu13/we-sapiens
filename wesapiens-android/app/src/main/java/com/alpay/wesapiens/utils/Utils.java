@@ -6,8 +6,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Environment;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,8 +20,11 @@ import android.widget.Toast;
 import com.alpay.wesapiens.R;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.ObjectOutputStream;
+import java.util.Arrays;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -146,4 +151,30 @@ public class Utils {
         toast.setView(layout);
         toast.show();
     }
+
+
+    public static Drawable getDrawableWithName(Context context, String fileName) {
+        Drawable drawable;
+        try {
+            String[] assetFileNames = context.getAssets().list("frame");
+            if (Arrays.asList(assetFileNames).contains(fileName)) {
+                InputStream inputStream = context.getAssets().open("frame/" + fileName);
+                drawable = Drawable.createFromStream(inputStream, null);
+                inputStream.close();
+            } else {
+                String directoryPath = Environment.getExternalStorageDirectory().getAbsolutePath();
+                if (!directoryPath.isEmpty()) {
+                    directoryPath += "/wesapiens/drawable";
+                } else {
+                    directoryPath = "storage/self/primary/wesapiens/drawable";
+                }
+                File file = new File(directoryPath + "/" + fileName);
+                drawable = Drawable.createFromPath(file.getAbsolutePath());
+            }
+            return drawable;
+        } catch (IOException ex) {
+            return null;
+        }
+    }
+
 }

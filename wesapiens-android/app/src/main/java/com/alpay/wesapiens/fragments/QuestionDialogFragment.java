@@ -18,14 +18,8 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import com.alpay.wesapiens.HomeActivity;
 import com.alpay.wesapiens.R;
 import com.alpay.wesapiens.listener.OnSwipeTouchListener;
-import com.alpay.wesapiens.models.Question;
-
-import org.w3c.dom.Text;
-
-import java.util.Iterator;
 
 public class QuestionDialogFragment extends DialogFragment {
 
@@ -99,6 +93,23 @@ public class QuestionDialogFragment extends DialogFragment {
         questionDialogTitle.setText(mQuestionTitle);
         questionDialogBody.setText(mQuestionBody[0]);
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        hideSystemUI();
+    }
+
+    private void hideSystemUI() {
+        view.setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION // hide nav bar
+                        | View.SYSTEM_UI_FLAG_FULLSCREEN // hide status bar
+                        | View.SYSTEM_UI_FLAG_IMMERSIVE);
     }
 
     @Override
