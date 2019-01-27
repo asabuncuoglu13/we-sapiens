@@ -16,6 +16,7 @@ import com.alpay.wesapiens.models.FrameHelper;
 import java.io.FileNotFoundException;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -38,6 +39,11 @@ public class CreateGameFragment extends Fragment implements OnStartDragListener 
 
     public CreateGameFragment() {
         // Required empty public constructor
+    }
+
+    @OnClick(R.id.back_button)
+    public void backButtonAction(){
+        FragmentManager.openFragment((AppCompatActivity) getActivity(), FragmentManager.HOME);
     }
 
     @OnClick(R.id.add_new_frame_button)

@@ -3,81 +3,92 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/question_dialog_frame"
-    android:layout_width="@dimen/unit300"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/unit20"
-    android:background="@color/lightGrey">
+    android:layout_gravity="center"
+    android:background="@color/transparent"
+    android:layout_margin="@dimen/unit20">
 
-    <LinearLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_margin="@dimen/unit5">
-
-        <ImageView
-            android:id="@+id/question_prev_page_button"
-            android:layout_width="@dimen/unit30"
-            android:layout_height="@dimen/unit30"
-            android:layout_gravity="center_vertical|left"
-            app:srcCompat="@drawable/left_arrow" />
+        android:layout_height="fill_parent"
+        app:cardCornerRadius="@dimen/unit12"
+        app:cardBackgroundColor="@color/darkGrey">
 
         <LinearLayout
-            android:layout_width="@dimen/unit200"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_gravity="center"
-            android:layout_margin="@dimen/unit15"
-            android:orientation="vertical">
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="horizontal"
+            android:background="@color/transparent">
 
-            <TextView
-                android:id="@+id/question_dialog_title"
-                style="@style/DialogTitle"
-                android:layout_width="wrap_content"
+            <ImageView
+                android:id="@+id/question_prev_page_button"
+                android:layout_width="@dimen/unit30"
+                android:layout_height="@dimen/unit30"
+                android:layout_gravity="center_vertical"
+                app:srcCompat="@drawable/left_arrow" />
+
+            <LinearLayout
+                android:layout_width="@dimen/unit400"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_margin="@dimen/unit5"
-                tools:text="Dialog Title" />
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/unit15"
+                android:background="@color/transparent"
+                android:orientation="vertical">
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/md_black_1000" />
+                <TextView
+                    android:id="@+id/question_dialog_title"
+                    style="@style/DialogTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="@dimen/unit5"
+                    tools:text="Dialog Title" />
 
-            <TextView
-                android:id="@+id/question_dialog_body"
-                style="@style/DialogBody"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_margin="@dimen/unit5"
-                tools:text="@tools:sample/lorem" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/white" />
 
-            <androidx.appcompat.widget.AppCompatEditText
-                android:visibility="gone"
-                android:id="@+id/question_edittext"
-                android:layout_width="@dimen/unit150"
-                android:layout_height="@dimen/unit50"
-                android:layout_gravity="center_horizontal"
-                android:inputType="numberDecimal"
-                tools:hint="Hint text" />
+                <TextView
+                    android:id="@+id/question_dialog_body"
+                    style="@style/DialogBody"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="@dimen/unit5"
+                    tools:text="@tools:sample/lorem" />
 
-            <Button
-                android:id="@+id/question_submit_button"
-                style="@style/DialogButton"
-                android:layout_width="@dimen/unit120"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="@string/question_submit_button_text" />
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:visibility="gone"
+                    android:id="@+id/question_edittext"
+                    android:layout_width="@dimen/unit150"
+                    android:layout_height="@dimen/unit50"
+                    android:layout_gravity="center_horizontal"
+                    android:inputType="numberDecimal"
+                    tools:hint="Hint text" />
+
+                <Button
+                    android:id="@+id/question_submit_button"
+                    style="@style/DialogButton"
+                    android:layout_width="@dimen/unit120"
+                    android:visibility="gone"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/question_submit_button_text" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/question_next_page_button"
+                android:layout_width="@dimen/unit30"
+                android:layout_height="@dimen/unit30"
+                android:layout_gravity="center_vertical"
+                app:srcCompat="@drawable/right_arrow" />
 
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/question_next_page_button"
-            android:layout_width="@dimen/unit30"
-            android:layout_height="@dimen/unit30"
-            android:layout_gravity="center_vertical|right"
-            app:srcCompat="@drawable/right_arrow" />
-
-    </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
 </FrameLayout>

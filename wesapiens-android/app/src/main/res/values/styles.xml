@@ -3,20 +3,21 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/md_orange_400</item>
     </style>
 
     <style name="DialogTitle" parent="TextAppearance.AppCompat.Title">
-        <item name="android:color">@color/md_blue_grey_800</item>
+        <item name="android:textColor">@color/white</item>
     </style>
 
     <style name="DialogBody" parent="TextAppearance.AppCompat.Body1">
-        <item name="android:color">@color/md_blue_grey_800</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:gravity">center</item>
     </style>
 
     <style name="DialogButton" parent="Base.TextAppearance.AppCompat.Button">
-        <item name="android:background">@color/md_blue_grey_800</item>
-        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@color/md_orange_400</item>
+        <item name="android:textColor">@color/md_black_1000</item>
     </style>
 
     <style name="CreateGameEditText" parent="Widget.AppCompat.EditText">

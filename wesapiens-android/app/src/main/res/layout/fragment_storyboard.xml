@@ -8,6 +8,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_margin="@dimen/unit14"
+            android:tint="@color/white"
+            app:backgroundTint="@color/colorAccent"
+            app:srcCompat="@drawable/left_arrow" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/create_game_recyclerview"
             android:layout_width="match_parent"
@@ -21,7 +32,7 @@
             android:layout_alignParentBottom="true"
             android:layout_margin="@dimen/unit14"
             android:tint="@color/white"
-            app:backgroundTint="@color/story_build_color"
+            app:backgroundTint="@color/colorAccent"
             app:srcCompat="@drawable/ic_add" />
 
     </RelativeLayout>

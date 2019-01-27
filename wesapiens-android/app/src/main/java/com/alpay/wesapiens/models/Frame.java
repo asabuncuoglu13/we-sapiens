@@ -1,26 +1,25 @@
 package com.alpay.wesapiens.models;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Frame {
 
     int frameID;
     String frameName;
-    String frameImageName;
-    String[] frameQuestion;
-    String[] frameAnswer;
+    String frameStartImage;
+    String frameEndImage;
+    String[] frameQuestionArray;
+    String frameAnswer;
 
     public Frame() {
 
     }
 
-    public Frame(int frameID, String frameName, String frameImageName, String[] questions, String[] answers) {
+    public Frame(int frameID, String frameName, String frameStartImage, String frameEndImage, String[] questions, String answer) {
         this.frameID = frameID;
         this.frameName = frameName;
-        this.frameImageName = frameImageName;
-        this.frameQuestion = questions;
-        this.frameAnswer = answers;
+        this.frameStartImage = frameStartImage;
+        this.frameEndImage = frameEndImage;
+        this.frameQuestionArray = questions;
+        this.frameAnswer = answer;
     }
 
     public int getFrameID() {
@@ -39,27 +38,35 @@ public class Frame {
         this.frameName = frameName;
     }
 
-    public String getFrameImageName() {
-        return frameImageName;
+    public String getFrameStartImage() {
+        return frameStartImage;
     }
 
-    public void setFrameImageName(String frameImageName) {
-        this.frameImageName = frameImageName;
+    public String getFrameEndImage() {
+        return frameEndImage;
     }
 
-    public String[] getFrameQuestion() {
-        return frameQuestion;
+    public void setFrameEndImage(String frameEndImage) {
+        this.frameEndImage = frameEndImage;
     }
 
-    public void setFrameQuestion(String[] frameQuestion) {
-        this.frameQuestion = frameQuestion;
+    public void setFrameStartImage(String frameStartImage) {
+        this.frameStartImage = frameStartImage;
     }
 
-    public String[] getFrameAnswer() {
+    public String[] getFrameQuestionArray() {
+        return frameQuestionArray;
+    }
+
+    public void setFrameQuestionArray(String[] frameQuestionArray) {
+        this.frameQuestionArray = frameQuestionArray;
+    }
+
+    public String getFrameAnswer() {
         return frameAnswer;
     }
 
-    public void setFrameAnswer(String[] frameAnswer) {
+    public void setFrameAnswer(String frameAnswer) {
         this.frameAnswer = frameAnswer;
     }
 }

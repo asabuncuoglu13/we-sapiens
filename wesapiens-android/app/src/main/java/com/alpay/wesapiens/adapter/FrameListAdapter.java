@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -51,7 +50,7 @@ public class FrameListAdapter extends RecyclerView.Adapter<FrameListAdapter.Item
     public void onBindViewHolder(final ItemViewHolder holder, int position) {
         holder.frameName.setText(mItems.get(position).getFrameName());
         holder.frameImage.setImageDrawable(
-                Utils.getDrawableWithName(mContext, mItems.get(position).getFrameImageName())
+                Utils.getDrawableWithName(mContext, mItems.get(position).getFrameStartImage())
         );
 
         holder.frameImage.setOnTouchListener(new View.OnTouchListener() {

@@ -2,9 +2,8 @@ package com.alpay.wesapiens.controller;
 
 import java.util.List;
 
-import com.alpay.wesapiens.adapter.QuestionDialogAdapter;
+import com.alpay.wesapiens.models.Frame;
 import com.alpay.wesapiens.utils.FirebaseAPI;
-import com.alpay.wesapiens.models.Question;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -15,16 +14,13 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class QuestionAPIController implements Callback<List<Question>> {
+public class FrameAPIController implements Callback<List<Frame>> {
 
-
-    QuestionDialogAdapter questionDialogAdapter;
     AppCompatActivity appCompatActivity;
     static final String BASE_URL = "https://codenotesalpay.firebaseio.com/";
 
-    public QuestionAPIController(AppCompatActivity activity){
+    public FrameAPIController(AppCompatActivity activity){
         appCompatActivity = activity;
-        questionDialogAdapter = new QuestionDialogAdapter(appCompatActivity);
     }
 
     public void start() {
@@ -39,22 +35,21 @@ public class QuestionAPIController implements Callback<List<Question>> {
 
         FirebaseAPI firebaseAPI = retrofit.create(FirebaseAPI.class);
 
-        Call<List<Question>> call = firebaseAPI.loadQuestions();
+        Call<List<Frame>> call = firebaseAPI.loadFrames();
         call.enqueue(this);
     }
 
     @Override
-    public void onResponse(Call<List<Question>> call, Response<List<Question>> response) {
+    public void onResponse(Call<List<Frame>> call, Response<List<Frame>> response) {
         if(response.isSuccessful()) {
-            List<Question> questionsList = response.body();
-            questionDialogAdapter.populateQuestionList(questionsList);
+            List<Frame> frameList = response.body();
         } else {
-            questionDialogAdapter.showResponseError();
+            // error
         }
     }
 
     @Override
-    public void onFailure(Call<List<Question>> call, Throwable t) {
-        questionDialogAdapter.showResponseError();
+    public void onFailure(Call<List<Frame>> call, Throwable t) {
+        // failure
     }
 }

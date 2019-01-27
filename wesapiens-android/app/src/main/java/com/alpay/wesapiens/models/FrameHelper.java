@@ -10,25 +10,21 @@ import com.google.gson.stream.JsonReader;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.io.Writer;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
 
 public class FrameHelper {
 
     static List<Frame> frameList = new ArrayList<>();
     static String[] questions = {"Question 1"};
-    static String[] answers = {"Answer 1"};
+    static String answers = "Answer 1";
     static Gson gson = new GsonBuilder().create();
+    static int currentFramePosition = 0;
     static Type frameListType = new TypeToken<ArrayList<Frame>>(){}.getType();
 
     private static void writeToFile(String data, Context context) {
@@ -76,6 +72,14 @@ public class FrameHelper {
         return data;
     }
 
+    public static int getCurrentFramePosition() {
+        return currentFramePosition;
+    }
+
+    public static void setCurrentFramePosition(int currentFramePosition) {
+        FrameHelper.currentFramePosition = currentFramePosition;
+    }
+
     public static int getFrameListSize(){
         return frameList.size();
     }
@@ -91,14 +95,14 @@ public class FrameHelper {
 
     public static List<Frame> listAll(){
         if(frameList.isEmpty()){
-            frameList.add(new Frame(1,"Frame Name 1", "caveman01.png", questions, answers));
-            frameList.add(new Frame(2,"Frame Name 2", "caveman01.png", questions, answers));
+            frameList.add(new Frame(1,"Frame Name 1", "c1WeSapiens.png", "c2WeSapiens.png", questions, answers));
+            frameList.add(new Frame(2,"Frame Name 2", "d1WeSapiens.png", "d2WeSapiens.png", questions, answers));
         }
         return frameList;
     }
 
     public static void addNewFrame(){
-        frameList.add(new Frame(1,"Frame Name 1", "caveman01.png", questions, answers));
+        frameList.add(new Frame(1,"Frame Name 1", "e1WeSapiens.png", "e2WeSapiens.png", questions, answers));
     }
 
 }

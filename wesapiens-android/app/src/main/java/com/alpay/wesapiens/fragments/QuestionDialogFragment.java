@@ -1,6 +1,8 @@
 package com.alpay.wesapiens.fragments;
 
 import android.content.DialogInterface;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -14,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -42,6 +45,9 @@ public class QuestionDialogFragment extends DialogFragment {
 
     @BindView(R.id.question_dialog_frame)
     FrameLayout questionDialogFrame;
+
+    @BindView(R.id.question_submit_button)
+    Button submitButton;
 
     @OnClick(R.id.question_submit_button)
     public void submitButtonAction(){
@@ -92,6 +98,7 @@ public class QuestionDialogFragment extends DialogFragment {
         });
         questionDialogTitle.setText(mQuestionTitle);
         questionDialogBody.setText(mQuestionBody[0]);
+        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         return view;
     }
 
@@ -110,13 +117,6 @@ public class QuestionDialogFragment extends DialogFragment {
                         | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION // hide nav bar
                         | View.SYSTEM_UI_FLAG_FULLSCREEN // hide status bar
                         | View.SYSTEM_UI_FLAG_IMMERSIVE);
-    }
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        questionEditText.requestFocus();
-        getDialog().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
     }
 
     @Override
@@ -159,6 +159,7 @@ public class QuestionDialogFragment extends DialogFragment {
         }
         if(mCurrentBodyPosition == mQuestionBody.length -1){
             questionEditText.setVisibility(View.VISIBLE);
+            submitButton.setVisibility(View.VISIBLE);
         }
     }
 
