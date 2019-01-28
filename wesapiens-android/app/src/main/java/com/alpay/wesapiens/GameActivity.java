@@ -42,6 +42,7 @@ public class GameActivity extends AppCompatActivity  implements QuestionDialogFr
         prepareView(frameList.get(currentFramePosition));
     }
 
+    // To sync with FirebaseDB
     /*@Override
     protected void onStart() {
         QuestionAPIController questionAPIController = new QuestionAPIController(this);
@@ -67,12 +68,9 @@ public class GameActivity extends AppCompatActivity  implements QuestionDialogFr
 
     private void nextFrame(){
         currentFramePosition++;
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if(frameList.get(currentFramePosition) != null){
-                    prepareView(frameList.get(currentFramePosition));
-                }
+        new Handler().postDelayed(() -> {
+            if(frameList.get(currentFramePosition) != null){
+                prepareView(frameList.get(currentFramePosition));
             }
         }, 3000);
     }

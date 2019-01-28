@@ -1,6 +1,5 @@
 package com.alpay.wesapiens.fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,8 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.alpay.wesapiens.GameActivity;
 import com.alpay.wesapiens.R;
+import com.alpay.wesapiens.base.FragmentManager;
 
 public class HomeFragment extends Fragment {
 
@@ -23,8 +22,7 @@ public class HomeFragment extends Fragment {
 
     @OnClick(R.id.play_button)
     public void playGame(){
-        Intent intent = new Intent(getActivity(), GameActivity.class);
-        startActivity(intent);
+        FragmentManager.openFragment((AppCompatActivity)getActivity(), FragmentManager.MAP);
     }
 
     @OnClick(R.id.create_game_button)
@@ -45,6 +43,7 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_home, container, false);
+        getActivity().findViewById(R.id.back_button).setVisibility(View.GONE);
         unbinder = ButterKnife.bind(this, view);
         return view;
     }
@@ -52,6 +51,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
+        getActivity().findViewById(R.id.back_button).setVisibility(View.VISIBLE);
         unbinder.unbind();
     }
 

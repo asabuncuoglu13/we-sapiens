@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            style="@style/SelectTopicTitle"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="@dimen/unit20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/select_topic_header"/>
+
+        <org.zakariya.flyoutmenu.FlyoutMenuView
+            android:id="@+id/physics"
+            android:layout_width="@dimen/unit160"
+            android:layout_height="@dimen/unit160"
+            app:fmButtonBackgroundColor="@color/darkGrey"
+            android:layout_toLeftOf="@+id/chemistry"
+            android:layout_margin="@dimen/unit20"
+            android:layout_centerVertical="true"/>
+
+        <org.zakariya.flyoutmenu.FlyoutMenuView
+            android:id="@+id/chemistry"
+            android:layout_width="@dimen/unit160"
+            android:layout_height="@dimen/unit160"
+            app:fmButtonBackgroundColor="@color/darkGrey"
+            android:layout_centerInParent="true"/>
+
+        <org.zakariya.flyoutmenu.FlyoutMenuView
+            android:id="@+id/biology"
+            android:layout_width="@dimen/unit160"
+            android:layout_height="@dimen/unit160"
+            app:fmButtonBackgroundColor="@color/darkGrey"
+            android:layout_toRightOf="@+id/chemistry"
+            android:layout_margin="@dimen/unit20"
+            android:layout_centerVertical="true"/>
+
+    </RelativeLayout>
+</FrameLayout>

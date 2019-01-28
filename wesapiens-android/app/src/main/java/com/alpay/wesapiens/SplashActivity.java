@@ -9,6 +9,8 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
+import com.alpay.wesapiens.base.FragmentHolderActivity;
+
 import androidx.appcompat.app.AppCompatActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -47,7 +49,7 @@ public class SplashActivity extends AppCompatActivity {
 
     private void launch() {
         if (!isFinishing()) {
-            Intent intent = new Intent(this, HomeActivity.class);
+            Intent intent = new Intent(this, FragmentHolderActivity.class);
             startActivity(intent);
             overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             finish();

@@ -41,11 +41,6 @@ public class CreateGameFragment extends Fragment implements OnStartDragListener 
         // Required empty public constructor
     }
 
-    @OnClick(R.id.back_button)
-    public void backButtonAction(){
-        FragmentManager.openFragment((AppCompatActivity) getActivity(), FragmentManager.HOME);
-    }
-
     @OnClick(R.id.add_new_frame_button)
     public void addNewFrame(){
         FrameHelper.addNewFrame();

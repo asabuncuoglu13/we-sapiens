@@ -21,4 +21,7 @@
     </string-array>
     <string name="question1_answer">500</string>
 
+    <!-- Select Topic Fragment-->
+    <string name="select_topic_header">Select A Topic</string>
+
 </resources>
