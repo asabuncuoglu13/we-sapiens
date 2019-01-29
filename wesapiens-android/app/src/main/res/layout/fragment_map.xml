@@ -20,7 +20,8 @@
             android:id="@+id/physics"
             android:layout_width="@dimen/unit160"
             android:layout_height="@dimen/unit160"
-            app:fmButtonBackgroundColor="@color/darkGrey"
+            android:background="@drawable/physics"
+            app:fmButtonBackgroundColor="@color/transparent"
             android:layout_toLeftOf="@+id/chemistry"
             android:layout_margin="@dimen/unit20"
             android:layout_centerVertical="true"/>

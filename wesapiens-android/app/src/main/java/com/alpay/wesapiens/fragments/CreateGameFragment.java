@@ -1,7 +1,6 @@
 package com.alpay.wesapiens.fragments;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,13 +9,11 @@ import com.alpay.wesapiens.R;
 import com.alpay.wesapiens.adapter.FrameListAdapter;
 import com.alpay.wesapiens.helper.OnStartDragListener;
 import com.alpay.wesapiens.helper.SimpleItemTouchHelperCallback;
-import com.alpay.wesapiens.models.Frame;
 import com.alpay.wesapiens.models.FrameHelper;
 
 import java.io.FileNotFoundException;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.ItemTouchHelper;

@@ -1,19 +1,21 @@
 package com.alpay.wesapiens.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import com.alpay.wesapiens.GameActivity;
+import com.alpay.wesapiens.R;
+import com.alpay.wesapiens.base.FragmentManager;
+import com.alpay.wesapiens.utils.Utils;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-import com.alpay.wesapiens.R;
-import com.alpay.wesapiens.base.FragmentManager;
 
 public class HomeFragment extends Fragment {
 
@@ -28,6 +30,11 @@ public class HomeFragment extends Fragment {
     @OnClick(R.id.create_game_button)
     public void createGame(){
         FragmentManager.openFragment((AppCompatActivity) getActivity(), FragmentManager.CREATE_GAME);
+    }
+
+    @OnClick(R.id.mute_button)
+    public void mute(){
+        Utils.muteMedia();
     }
 
     public HomeFragment() {

@@ -1,14 +1,12 @@
 package com.alpay.wesapiens;
 
-import androidx.appcompat.app.AppCompatActivity;
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
+import android.content.DialogInterface;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.alpay.wesapiens.fragments.QuestionDialogFragment;
@@ -18,18 +16,29 @@ import com.alpay.wesapiens.utils.Utils;
 
 import java.util.List;
 
-public class GameActivity extends AppCompatActivity  implements QuestionDialogFragment.QuestionDialogListener {
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
+public class GameActivity extends AppCompatActivity implements QuestionDialogFragment.QuestionDialogListener {
 
     QuestionDialogFragment questionDialogFragment;
     List<Frame> frameList;
     int currentFramePosition;
+    boolean cancelPreparation = false;
 
     @BindView(R.id.chapter_imageview)
     ImageView chapterImage;
 
+    @BindView(R.id.timeplace_layout)
+    LinearLayout timePlaceLayout;
+
     @OnClick(R.id.back_button)
-    public void backButtonAction(){
-        super.onBackPressed();
+    public void backButtonAction() {
+        quitGame();
     }
 
     @Override
@@ -37,6 +46,7 @@ public class GameActivity extends AppCompatActivity  implements QuestionDialogFr
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
         ButterKnife.bind(this);
+        timePlaceLayout.bringToFront();
         frameList = FrameHelper.listAll();
         questionDialogFragment = QuestionDialogFragment.newInstance();
         prepareView(frameList.get(currentFramePosition));
@@ -50,13 +60,49 @@ public class GameActivity extends AppCompatActivity  implements QuestionDialogFr
         super.onStart();
     }*/
 
+    private void quitGame() {
+        Resources resources = getResources();
+        cancelPreparation = true;
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which) {
+                    case DialogInterface.BUTTON_POSITIVE:
+                        GameActivity.super.onBackPressed();
+                        break;
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        cancelPreparation = false;
+                        break;
+                    default:
+                        break;
+                }
+            }
+        };
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(resources.getString(R.string.are_you_sure))
+                .setPositiveButton(resources.getString(R.string.yes), dialogClickListener)
+                .setNegativeButton(resources.getString(R.string.no), dialogClickListener).show();
+    }
+
     public void prepareView(Frame frame) {
+        Utils.playSound(this, R.raw.strongwind);
         chapterImage.setImageDrawable(Utils.getDrawableWithName(this, frame.getFrameStartImage()));
-        questionDialogFragment.setQuestionDialogTitle(frame.getFrameName());
-        questionDialogFragment.setQuestionDialogBody(frame.getFrameQuestionArray());
-        questionDialogFragment.setQuestionAnswer(frame.getFrameAnswer());
-        questionDialogFragment.setCancelable(false);
-        questionDialogFragment.show(getSupportFragmentManager(), "questionDialogFragment");
+        new Handler().postDelayed(() -> {
+            if (!cancelPreparation) {
+                hideTimePlaceLayout();
+            }
+        }, 4500);
+        new Handler().postDelayed(() -> {
+            if (!cancelPreparation) {
+                questionDialogFragment.setQuestionDialogTitle(frame.getFrameName());
+                questionDialogFragment.setQuestionDialogBody(frame.getFrameQuestionArray());
+                questionDialogFragment.setQuestionAnswer(frame.getFrameAnswer());
+                questionDialogFragment.setCancelable(false);
+                questionDialogFragment.show(getSupportFragmentManager(), "questionDialogFragment");
+            }
+        }, 5000);
+
     }
 
     @Override
@@ -66,13 +112,23 @@ public class GameActivity extends AppCompatActivity  implements QuestionDialogFr
         nextFrame();
     }
 
-    private void nextFrame(){
+    private void nextFrame() {
         currentFramePosition++;
         new Handler().postDelayed(() -> {
-            if(frameList.get(currentFramePosition) != null){
+            if (frameList.get(currentFramePosition) != null) {
+                Utils.stopMediaPlayer();
+                showTimePlaceLayout();
                 prepareView(frameList.get(currentFramePosition));
             }
         }, 3000);
+    }
+
+    private void showTimePlaceLayout() {
+        timePlaceLayout.animate().alpha(1.0f).setDuration(500);
+    }
+
+    private void hideTimePlaceLayout() {
+        timePlaceLayout.animate().alpha(0.0f).setDuration(1000);
     }
 
     @Override

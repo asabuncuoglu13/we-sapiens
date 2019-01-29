@@ -4,14 +4,7 @@ import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-
-import androidx.annotation.Nullable;
-import androidx.fragment.app.DialogFragment;
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-import butterknife.Unbinder;
-
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +17,12 @@ import android.widget.TextView;
 import com.alpay.wesapiens.R;
 import com.alpay.wesapiens.listener.OnSwipeTouchListener;
 
+import androidx.fragment.app.DialogFragment;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.Unbinder;
+
 public class QuestionDialogFragment extends DialogFragment {
 
     public View view;
@@ -31,7 +30,6 @@ public class QuestionDialogFragment extends DialogFragment {
     private String mAnswer;
     private String mQuestionTitle;
     private String[] mQuestionBody;
-    private int mQuestionListSize;
     private int mCurrentBodyPosition = 0;
 
     @BindView(R.id.question_dialog_title)
@@ -99,6 +97,9 @@ public class QuestionDialogFragment extends DialogFragment {
         questionDialogTitle.setText(mQuestionTitle);
         questionDialogBody.setText(mQuestionBody[0]);
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        getDialog().getWindow().setGravity(Gravity.RIGHT | Gravity.TOP);
+        WindowManager.LayoutParams layoutParams = getDialog().getWindow().getAttributes();
+        getDialog().getWindow().setAttributes(layoutParams);
         return view;
     }
 
@@ -144,8 +145,8 @@ public class QuestionDialogFragment extends DialogFragment {
         mAnswer = answer;
     }
 
-    public void setQuestionListSize(int size){
-        mQuestionListSize = size;
+    public String getAnswer() {
+        return mAnswer;
     }
 
     private void checkAnswer(){

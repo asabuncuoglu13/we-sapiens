@@ -3,27 +3,79 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragments.HomeFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <Button
-            android:background="@drawable/play_button"
+        <ImageView
+            app:srcCompat="@drawable/home"
+            android:scaleType="centerCrop"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ImageView
             android:id="@+id/play_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/play_button"
-            style="@style/homeButtonText" />
+            android:clickable="true"
+            android:layout_width="@dimen/unit200"
+            android:layout_height="@dimen/unit100"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/unit10"
+            app:srcCompat="@drawable/play"/>
 
-        <Button
+        <LinearLayout
             android:id="@+id/create_game_button"
+            android:orientation="horizontal"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="@dimen/unit10"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/create_button"/>
+            android:layout_height="wrap_content">
 
-    </LinearLayout>
+            <ImageView
+                app:srcCompat="@drawable/create_module"
+                android:layout_width="@dimen/unit30"
+                android:layout_height="@dimen/unit30"
+                android:layout_gravity="center_vertical"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:fontFamily="@font/mali_family"
+                android:textSize="@dimen/unit22"
+                android:layout_height="wrap_content"
+                android:text="@string/create_button"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/mute_button"
+            android:orientation="horizontal"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="@dimen/unit10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                app:srcCompat="@drawable/create_module"
+                android:layout_width="@dimen/unit30"
+                android:layout_height="@dimen/unit30"
+                android:layout_gravity="center_vertical"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:fontFamily="@font/mali_family"
+                android:textSize="@dimen/unit22"
+                android:layout_height="wrap_content"
+                android:text="MUTE"/>
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
 </FrameLayout>

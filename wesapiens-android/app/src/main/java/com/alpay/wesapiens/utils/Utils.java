@@ -7,8 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
+import android.media.MediaPlayer;
 import android.os.Environment;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -31,10 +30,35 @@ import androidx.appcompat.app.AppCompatActivity;
 public class Utils {
 
     public static String SP_START_KEY_IS_PRESSED = "startKeyIsPressed";
+    private static MediaPlayer mp;
+    private static boolean mp_active = true;
 
     public static boolean isConnected() throws InterruptedException, IOException {
         String command = "ping -c 1 google.com";
         return (Runtime.getRuntime().exec(command).waitFor() == 0);
+    }
+
+    public static void playSound(AppCompatActivity appCompatActivity, int soundID){
+        if(mp_active){
+            mp = MediaPlayer.create(appCompatActivity, soundID);
+            mp.setLooping(true);
+            mp.start();
+        }
+    }
+
+    public static void stopMediaPlayer(){
+        mp.stop();
+        mp.release();
+    }
+
+    public static void muteMedia(){
+        mp_active = false;
+        mp.setVolume(0.0f,0.0f);
+    }
+
+    public static void openSoundMedia(){
+        mp_active = true;
+        mp.setVolume(100.0f,100.0f);
     }
 
     public static void showOKDialog(AppCompatActivity activity, int stringID) {

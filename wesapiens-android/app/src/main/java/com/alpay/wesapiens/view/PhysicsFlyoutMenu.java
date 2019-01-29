@@ -1,31 +1,30 @@
 package com.alpay.wesapiens.view;
 
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
 import android.text.TextPaint;
 
 import org.zakariya.flyoutmenu.FlyoutMenuView;
 
 import androidx.annotation.ColorInt;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 public class PhysicsFlyoutMenu {
 
-    static String getEmojiByUnicode(int unicode){
-        return new String(Character.toChars(unicode));
-    }
-
     public static class MenuItem extends FlyoutMenuView.MenuItem {
 
-        int emojiCode;
-        String emojiString;
+        int drawableCode;
+        AppCompatActivity appCompatActivity;
         TextPaint textPaint;
 
-        public MenuItem(int id, int emojiCode, float size, @ColorInt int color) {
+        public MenuItem(AppCompatActivity appCompatActivity, int id, int drawableCode, float size, @ColorInt int color) {
             super(id);
-            this.emojiCode = emojiCode;
-            this.emojiString = getEmojiByUnicode(emojiCode);
-
+            this.drawableCode = drawableCode;
+            this.appCompatActivity = appCompatActivity;
             textPaint = new TextPaint();
             textPaint.setTextSize(size);
             textPaint.setTextAlign(Paint.Align.CENTER);
@@ -33,53 +32,30 @@ public class PhysicsFlyoutMenu {
             textPaint.setColor(color);
         }
 
-        public int getEmojiCode() {
-            return emojiCode;
+        public int getDrawableCode() {
+            return drawableCode;
+        }
+
+        public void setDrawableCode(int drawableCode) {
+            this.drawableCode = drawableCode;
         }
 
         @Override
         public void onDraw(Canvas canvas, RectF bounds, float degreeSelected) {
-            canvas.drawText(emojiString, bounds.centerX(), bounds.centerY() - ((textPaint.descent() + textPaint.ascent()) / 2), textPaint);
+            Drawable drawable = ContextCompat.getDrawable(appCompatActivity, drawableCode);
+            Bitmap bitmap = convertToBitmap(drawable, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+            canvas.drawBitmap(bitmap, bounds.centerX(), bounds.centerY() - ((textPaint.descent() + textPaint.ascent()) / 2), textPaint);
             canvas.drawText("Hello", bounds.centerX(), bounds.centerY() - (textPaint.descent() + textPaint.ascent() * 2), textPaint);
         }
-    }
 
-    public static class ButtonRenderer extends FlyoutMenuView.ButtonRenderer {
+        public Bitmap convertToBitmap(Drawable drawable, int widthPixels, int heightPixels) {
+            Bitmap mutableBitmap = Bitmap.createBitmap(widthPixels, heightPixels, Bitmap.Config.ARGB_8888);
+            Canvas canvas = new Canvas(mutableBitmap);
+            drawable.setBounds(0, 0, widthPixels, heightPixels);
+            drawable.draw(canvas);
 
-        int emojiCode;
-        String emojiString;
-        Paint paint;
-        TextPaint textPaint;
-
-        public ButtonRenderer(int emojiCode, float size, @ColorInt int color) {
-            super();
-
-            this.setEmojiCode(emojiCode);
-
-            paint = new Paint();
-            paint.setAntiAlias(true);
-
-            textPaint = new TextPaint();
-            textPaint.setTextSize(size);
-            textPaint.setTextAlign(Paint.Align.CENTER);
-            textPaint.setStyle(Paint.Style.FILL);
-            textPaint.setColor(color);
+            return mutableBitmap;
         }
 
-        public int getEmojiCode() {
-            return emojiCode;
-        }
-
-        public void setEmojiCode(int emojiCode) {
-            this.emojiCode = emojiCode;
-            this.emojiString = getEmojiByUnicode(this.emojiCode);
-        }
-
-        @Override
-        public void onDrawButtonContent(Canvas canvas, RectF buttonBounds, @ColorInt int buttonColor, float alpha) {
-            textPaint.setAlpha((int) (alpha * 255f));
-            canvas.drawText(emojiString, buttonBounds.centerX(), buttonBounds.centerY() - ((textPaint.descent() + textPaint.ascent()) / 2), textPaint);
-            canvas.drawText("Hello", buttonBounds.centerX(), buttonBounds.centerY() - (textPaint.descent() + textPaint.ascent() * 2), textPaint);
-        }
     }
 }

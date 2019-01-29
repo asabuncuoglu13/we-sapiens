@@ -6,8 +6,14 @@
         <item name="colorAccent">@color/md_orange_400</item>
     </style>
 
+    <style name="GameExtraInfoText" parent="TextAppearance.AppCompat.Title">
+        <item name="android:fontFamily">@font/lato_family</item>
+        <item name="android:textColor">@color/md_orange_700</item>
+        <item name="android:textSize">@dimen/unit40</item>
+    </style>
+
     <style name="ToastText" parent="TextAppearance.AppCompat.Title">
-        <item name="android:fontFamily">@font/vigafamily</item>
+        <item name="android:fontFamily">@font/mali_family</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:gravity">center</item>
     </style>
@@ -15,32 +21,32 @@
     <style name="SelectTopicTitle" parent="TextAppearance.AppCompat.Title">
         <item name="android:textColor">@color/md_orange_700</item>
         <item name="android:textSize" >@dimen/unit48</item>
-        <item name="android:fontFamily">@font/vigafamily</item>
+        <item name="android:fontFamily">@font/mali_family</item>
     </style>
 
     <style name="DialogTitle" parent="TextAppearance.AppCompat.Title">
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize" >@dimen/unit22</item>
-        <item name="android:fontFamily">@font/vigafamily</item>
+        <item name="android:fontFamily">@font/lato_family</item>
     </style>
 
     <style name="DialogBody" parent="TextAppearance.AppCompat.Body1">
         <item name="android:textColor">@color/white</item>
         <item name="android:gravity">center</item>
         <item name="android:textSize" >@dimen/unit18</item>
-        <item name="android:fontFamily">@font/neuchafamily</item>
+        <item name="android:fontFamily">@font/lato_family</item>
     </style>
 
     <style name="DialogButton" parent="Base.TextAppearance.AppCompat.Button">
         <item name="android:background">@color/md_orange_600</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize" >@dimen/unit24</item>
-        <item name="android:fontFamily">@font/neuchafamily</item>
+        <item name="android:fontFamily">@font/lato_family</item>
     </style>
 
     <style name="CreateGameEditText" parent="Widget.AppCompat.EditText">
         <item name="android:textSize">@dimen/unit12</item>
-        <item name="android:fontFamily">@font/neuchafamily</item>
+        <item name="android:fontFamily">@font/lato_family</item>
     </style>
 
 
@@ -52,7 +58,7 @@
         <item name="android:layout_margin" >3dp</item>
         <item name="android:textSize" >30dp</item>
         <item name="android:textStyle" >bold</item>
-        <item name="android:fontFamily">@font/vigafamily</item>
+        <item name="android:fontFamily">@font/mali_family</item>
         <item name="android:shadowColor" >#000000</item>
         <item name="android:shadowDx" >1</item>
         <item name="android:shadowDy" >1</item>

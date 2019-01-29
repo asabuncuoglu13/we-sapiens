@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">wesapiens</string>
+    <string name="splash_text"><i>Science from world history</i></string>
     <string name="question_submit_button_text">OK</string>
     <string name="internet_connection_error">Internet connection cannot established. Connect to see more activities and stories!</string>
 
@@ -23,5 +24,10 @@
 
     <!-- Select Topic Fragment-->
     <string name="select_topic_header">Select A Topic</string>
+
+    <!--Leave Game Dialog -->
+    <string name="yes">YES</string>
+    <string name="no">NO</string>
+    <string name="are_you_sure">Do you want to quit game now?</string>
 
 </resources>

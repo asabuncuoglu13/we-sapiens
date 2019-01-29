@@ -5,14 +5,11 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.alpay.wesapiens.R;
-import com.alpay.wesapiens.base.FragmentManager;
 import com.alpay.wesapiens.utils.Utils;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.IOException;
 
 import androidx.appcompat.app.AppCompatActivity;
-import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -29,6 +26,7 @@ public class FragmentHolderActivity extends AppCompatActivity{
         setContentView(R.layout.activity_home);
         ButterKnife.bind(this);
         checkInternetConnection();
+        Utils.playSound(this, R.raw.app);
         FragmentManager.openFragment(this, FragmentManager.HOME);
     }
 
@@ -63,4 +61,9 @@ public class FragmentHolderActivity extends AppCompatActivity{
                         | View.SYSTEM_UI_FLAG_FULLSCREEN);
     }
 
+    @Override
+    protected void onDestroy() {
+        Utils.stopMediaPlayer();
+        super.onDestroy();
+    }
 }

@@ -8,6 +8,7 @@ import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.alpay.wesapiens.base.FragmentHolderActivity;
 
@@ -18,7 +19,7 @@ import butterknife.ButterKnife;
 public class SplashActivity extends AppCompatActivity {
 
     @BindView(R.id.splash_logo)
-    ImageView splashLogoImage;
+    LinearLayout splashLogoImage;
     Animation bounceAnimation;
 
     private static final int SPLASH_DELAY = 3000;
