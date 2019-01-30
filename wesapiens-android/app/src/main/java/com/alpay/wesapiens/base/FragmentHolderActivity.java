@@ -6,14 +6,19 @@ import android.widget.Toast;
 
 import com.alpay.wesapiens.R;
 import com.alpay.wesapiens.utils.Utils;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.IOException;
 
 import androidx.appcompat.app.AppCompatActivity;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class FragmentHolderActivity extends AppCompatActivity{
+
+    @BindView(R.id.back_button)
+    FloatingActionButton backButton;
 
     @OnClick(R.id.back_button)
     public void backButtonAction(){
@@ -28,6 +33,7 @@ public class FragmentHolderActivity extends AppCompatActivity{
         checkInternetConnection();
         Utils.playSound(this, R.raw.app);
         FragmentManager.openFragment(this, FragmentManager.HOME);
+        backButton.bringToFront();
     }
 
     private void checkInternetConnection(){

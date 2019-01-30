@@ -1,13 +1,11 @@
 package com.alpay.wesapiens.fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import com.alpay.wesapiens.GameActivity;
 import com.alpay.wesapiens.R;
 import com.alpay.wesapiens.base.FragmentManager;
 import com.alpay.wesapiens.utils.Utils;
@@ -18,7 +16,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
-import okhttp3.internal.Util;
 
 public class HomeFragment extends Fragment {
 

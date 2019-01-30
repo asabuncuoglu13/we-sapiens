@@ -32,6 +32,7 @@ public class Utils {
     public static String SP_START_KEY_IS_PRESSED = "startKeyIsPressed";
     private static MediaPlayer mp;
     private static boolean mp_active = true;
+    public static final int PICK_PHOTO = 1;
 
     public static boolean isConnected() throws InterruptedException, IOException {
         String command = "ping -c 1 google.com";
@@ -199,6 +200,20 @@ public class Utils {
         } catch (IOException ex) {
             return null;
         }
+    }
+
+    public static void pickImage(AppCompatActivity appCompatActivity) {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("image/*");
+        appCompatActivity.startActivityForResult(intent, PICK_PHOTO);
+    }
+
+    public static void saveImageDrawable(Drawable drawable){
+
+    }
+
+    public static Drawable drawableFromInputStream(InputStream inputStream){
+        return Drawable.createFromStream(inputStream, null);
     }
 
 }

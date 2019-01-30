@@ -1,15 +1,14 @@
 package com.alpay.wesapiens.adapter;
 
-import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.RelativeLayout;
 
 import com.alpay.wesapiens.R;
 import com.alpay.wesapiens.helper.ItemTouchHelperAdapter;
@@ -18,25 +17,38 @@ import com.alpay.wesapiens.helper.OnStartDragListener;
 import com.alpay.wesapiens.models.Frame;
 import com.alpay.wesapiens.models.FrameHelper;
 import com.alpay.wesapiens.utils.Utils;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.MotionEventCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class FrameListAdapter extends RecyclerView.Adapter<FrameListAdapter.ItemViewHolder>
         implements ItemTouchHelperAdapter {
 
-    private List<Frame> mItems;
-    private Context mContext;
+    private List<Frame> mItems = new ArrayList<>();
+    private AppCompatActivity mAppCompatActivity;
+    private String fName;
+    private String fStartImage;
+    private String fEndImage;
+    private String[] fQuestions = new String[2];
+    private String fAnswer;
 
     private final OnStartDragListener mDragStartListener;
 
-    public FrameListAdapter(Context context, OnStartDragListener dragStartListener) {
+    public FrameListAdapter(AppCompatActivity appCompatActivity, OnStartDragListener dragStartListener) {
         mDragStartListener = dragStartListener;
-        mItems = FrameHelper.listAll();
-        mContext = context;
+        mItems.add(new Frame());
+        mAppCompatActivity = appCompatActivity;
+    }
+
+    public void addNewFrame(){
+        mItems.add(new Frame());
+        notifyDataSetChanged();
     }
 
     @Override
@@ -48,12 +60,20 @@ public class FrameListAdapter extends RecyclerView.Adapter<FrameListAdapter.Item
 
     @Override
     public void onBindViewHolder(final ItemViewHolder holder, int position) {
-        holder.frameName.setText(mItems.get(position).getFrameName());
-        holder.frameImage.setImageDrawable(
-                Utils.getDrawableWithName(mContext, mItems.get(position).getFrameStartImage())
-        );
-
-        holder.frameImage.setOnTouchListener(new View.OnTouchListener() {
+        holder.frameAddStartImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Utils.pickImage(mAppCompatActivity);
+            }
+        });
+        holder.frameDeleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mItems.remove(position);
+                notifyItemRemoved(position);
+            }
+        });
+        holder.frameLayout.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (MotionEventCompat.getActionMasked(event) == MotionEvent.ACTION_DOWN) {
@@ -62,6 +82,18 @@ public class FrameListAdapter extends RecyclerView.Adapter<FrameListAdapter.Item
                 return false;
             }
         });
+        holder.frameSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fName = holder.frameName.getText().toString();
+                fQuestions[0] = holder.frameContext.getText().toString();
+                fQuestions[1] = holder.frameQuestion.getText().toString();
+                fAnswer = holder.frameAnswer.getText().toString();
+                FrameHelper.addNewFrame(new Frame(1, fName, fStartImage, fEndImage, fQuestions, fAnswer));
+                addNewFrame();
+            }
+        });
+
     }
 
     @Override
@@ -84,17 +116,33 @@ public class FrameListAdapter extends RecyclerView.Adapter<FrameListAdapter.Item
 
     public static class ItemViewHolder extends RecyclerView.ViewHolder implements ItemTouchHelperViewHolder {
 
-        public final TextView frameName;
-        public final ImageView frameImage;
-        public final EditText frameQuestionInput;
-        public final ImageButton frameAddNewQuestionButton;
+
+        public final RelativeLayout frameLayout;
+        public final FloatingActionButton frameDeleteButton;
+        public final ImageView frameAddStartImageButton;
+        public final ImageView frameAddEndImageButton;
+        public final ImageView frameStartImage;
+        public final ImageView frameEndImage;
+        public final EditText frameName;
+        public final EditText frameContext;
+        public final EditText frameQuestion;
+        public final EditText frameAnswer;
+        public final Button frameSave;
+
 
         public ItemViewHolder(View itemView) {
             super(itemView);
+            frameLayout = itemView.findViewById(R.id.frame_layout);
+            frameDeleteButton = itemView.findViewById(R.id.frame_delete);
+            frameAddEndImageButton = itemView.findViewById(R.id.frame_add_start_image);
+            frameAddStartImageButton = itemView.findViewById(R.id.frame_add_start_image);
+            frameEndImage = itemView.findViewById(R.id.frame_end_image);
+            frameStartImage = itemView.findViewById(R.id.frame_start_image);
             frameName = itemView.findViewById(R.id.frame_name);
-            frameImage = itemView.findViewById(R.id.frame_image);
-            frameQuestionInput = itemView.findViewById(R.id.frame_question_input);
-            frameAddNewQuestionButton = itemView.findViewById(R.id.frame_question_button);
+            frameContext = itemView.findViewById(R.id.frame_context);
+            frameQuestion = itemView.findViewById(R.id.frame_question);
+            frameAnswer = itemView.findViewById(R.id.frame_answer);
+            frameSave = itemView.findViewById(R.id.frame_save);
         }
 
         @Override

@@ -4,15 +4,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
-import android.widget.ImageView;
 
 import com.alpay.wesapiens.R;
 import com.alpay.wesapiens.adapter.MenuListAdapter;
 import com.alpay.wesapiens.models.MenuItem;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -79,32 +76,32 @@ public class MapFragment extends Fragment {
     }
 
 
-    private void preparePhysicsView() {
+    private void prepareBiologyView() {
         menuDrawableCodes.clear();
-        menuDrawableCodes.add(new MenuItem("Force", getResources().getDrawable(R.drawable.ic_cell)));
-        menuDrawableCodes.add(new MenuItem("Energy", getResources().getDrawable(R.drawable.ic_mitosis)));
-        menuDrawableCodes.add(new MenuItem("Machine", getResources().getDrawable(R.drawable.ic_mayosis)));
-        menuDrawableCodes.add(new MenuItem("Energy", getResources().getDrawable(R.drawable.ic_generation)));
+        menuDrawableCodes.add(new MenuItem(getResources().getString(R.string.ch_cell), R.drawable.ic_b_cell, false));
+        menuDrawableCodes.add(new MenuItem(getResources().getString(R.string.ch_mitosis), R.drawable.ic_b_mitosis, false));
+        menuDrawableCodes.add(new MenuItem(getResources().getString(R.string.ch_mayosis), R.drawable.ic_b_mayosis, false));
+        menuDrawableCodes.add(new MenuItem(getResources().getString(R.string.ch_reproduction), R.drawable.ic_b_reproduction, false));
         menuListAdapter.notifyDataSetChanged();
         setupRecylerView(menuListAdapter);
     }
 
     private void prepareChemistryView() {
         menuDrawableCodes.clear();
-        menuDrawableCodes.add(new MenuItem("Matter", getResources().getDrawable(R.drawable.ic_cell)));
-        menuDrawableCodes.add(new MenuItem("Elements", getResources().getDrawable(R.drawable.ic_mitosis)));
-        menuDrawableCodes.add(new MenuItem("Solutions", getResources().getDrawable(R.drawable.ic_mayosis)));
-        menuDrawableCodes.add(new MenuItem("Energy", getResources().getDrawable(R.drawable.ic_generation)));
+        menuDrawableCodes.add(new MenuItem(getResources().getString(R.string.ch_element), R.drawable.ic_c_element, false));
+        menuDrawableCodes.add(new MenuItem(getResources().getString(R.string.ch_substance), R.drawable.ic_c_substance, false));
+        menuDrawableCodes.add(new MenuItem(getResources().getString(R.string.ch_solution), R.drawable.ic_c_solution, false));
+        menuDrawableCodes.add(new MenuItem(getResources().getString(R.string.ch_recycle), R.drawable.ic_c_recycle, false));
         menuListAdapter.notifyDataSetChanged();
         setupRecylerView(menuListAdapter);
     }
 
-    private void prepareBiologyView() {
+    private void preparePhysicsView() {
         menuDrawableCodes.clear();
-        menuDrawableCodes.add(new MenuItem("Cell", getResources().getDrawable(R.drawable.ic_cell)));
-        menuDrawableCodes.add(new MenuItem("Mitosis", getResources().getDrawable(R.drawable.ic_mitosis)));
-        menuDrawableCodes.add(new MenuItem("Mayosis", getResources().getDrawable(R.drawable.ic_mayosis)));
-        menuDrawableCodes.add(new MenuItem("Generation", getResources().getDrawable(R.drawable.ic_generation)));
+        menuDrawableCodes.add(new MenuItem(getResources().getString(R.string.ch_force), R.drawable.ic_p_force, true));
+        menuDrawableCodes.add(new MenuItem(getResources().getString(R.string.ch_energy), R.drawable.ic_p_energy, false));
+        menuDrawableCodes.add(new MenuItem(getResources().getString(R.string.ch_lens), R.drawable.ic_p_lens, false));
+        menuDrawableCodes.add(new MenuItem(getResources().getString(R.string.ch_optic), R.drawable.ic_p_optic, false));
         menuListAdapter.notifyDataSetChanged();
         setupRecylerView(menuListAdapter);
     }

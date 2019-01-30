@@ -18,7 +18,6 @@ import java.util.List;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -72,6 +71,7 @@ public class GameActivity extends AppCompatActivity implements QuestionDialogFra
                         break;
                     case DialogInterface.BUTTON_NEGATIVE:
                         cancelPreparation = false;
+                        prepareView(frameList.get(currentFramePosition));
                         break;
                     default:
                         break;
@@ -148,5 +148,12 @@ public class GameActivity extends AppCompatActivity implements QuestionDialogFra
                         | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_FULLSCREEN);
+    }
+
+    @Override
+    protected void onDestroy() {
+        Utils.stopMediaPlayer();
+        Utils.playSound(this, R.raw.app);
+        super.onDestroy();
     }
 }

@@ -1,19 +1,26 @@
 package com.alpay.wesapiens.fragments;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.alpay.wesapiens.R;
 import com.alpay.wesapiens.adapter.FrameListAdapter;
 import com.alpay.wesapiens.helper.OnStartDragListener;
 import com.alpay.wesapiens.helper.SimpleItemTouchHelperCallback;
 import com.alpay.wesapiens.models.FrameHelper;
+import com.alpay.wesapiens.utils.Utils;
 
 import java.io.FileNotFoundException;
+import java.io.InputStream;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -40,8 +47,7 @@ public class CreateGameFragment extends Fragment implements OnStartDragListener 
 
     @OnClick(R.id.add_new_frame_button)
     public void addNewFrame(){
-        FrameHelper.addNewFrame();
-        frameListAdapter.notifyDataSetChanged();
+        frameListAdapter.addNewFrame();
         recyclerView.scrollToPosition(FrameHelper.getFrameListSize() - 1);
     }
 
@@ -58,10 +64,29 @@ public class CreateGameFragment extends Fragment implements OnStartDragListener 
     }
 
     @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Drawable drawable;
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == Utils.PICK_PHOTO && resultCode == Activity.RESULT_OK) {
+            if (data == null) {
+                Utils.showErrorToast((AppCompatActivity)getActivity(), R.string.error, Toast.LENGTH_SHORT);
+                return;
+            }
+            try {
+                InputStream inputStream = getActivity().getContentResolver().openInputStream(data.getData());
+                drawable = Drawable.createFromStream(inputStream, null);
+                Utils.saveImageDrawable(drawable);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        frameListAdapter = new FrameListAdapter(getActivity(), this);
+        frameListAdapter = new FrameListAdapter((AppCompatActivity) getActivity(), this);
         recyclerView = (RecyclerView) view.findViewById(R.id.create_game_recyclerview);
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(frameListAdapter);

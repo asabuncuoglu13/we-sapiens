@@ -21,7 +21,7 @@ import java.util.List;
 public class FrameHelper {
 
     static List<Frame> frameList = new ArrayList<>();
-    static String[] questions = {"Question 1"};
+    static String[] questions = {"Question 1", "Question 2", "Question 3"};
     static String answers = "Answer 1";
     static Gson gson = new GsonBuilder().create();
     static int currentFramePosition = 0;
@@ -92,14 +92,17 @@ public class FrameHelper {
 
     public static List<Frame> listAll(){
         if(frameList.isEmpty()){
-            frameList.add(new Frame(1,"Frame Name 1", "c1WeSapiens.png", "c2WeSapiens.png", questions, answers));
-            frameList.add(new Frame(2,"Frame Name 2", "d1WeSapiens.png", "d2WeSapiens.png", questions, answers));
+            frameList.add(new Frame(1,"Frame Name 1", "1.png", "2.png", questions, answers));
+            frameList.add(new Frame(2,"Frame Name 2", "3.png", "4.png", questions, answers));
+            frameList.add(new Frame(1,"Frame Name 1", "5.png", "6.png", questions, answers));
+            frameList.add(new Frame(2,"Frame Name 2", "7.png", "8.png", questions, answers));
+            frameList.add(new Frame(1,"Frame Name 1", "9.png", "10.png", questions, answers));
         }
         return frameList;
     }
 
-    public static void addNewFrame(){
-        frameList.add(new Frame(1,"Frame Name 1", "e1WeSapiens.png", "e2WeSapiens.png", questions, answers));
+    public static void addNewFrame(Frame frame){
+        frameList.add(frame);
     }
 
 }

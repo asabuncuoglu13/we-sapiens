@@ -1,18 +1,38 @@
 <resources>
-    <string name="app_name">wesapiens</string>
+    <string name="app_name">Olea</string>
     <string name="question_submit_button_text">OK</string>
     <string name="splash_text"><i>Dünya tarihinden fen bilimleri</i></string>
     <string name="internet_connection_error">İnternet bağlantısı kurulamadı. Daha çok içerik görmek için internete bağlan!</string>
+    <string name="error">Hata oluştu</string>
+    <string name="save">KAYDET</string>
 
     <!--Create Game Fragment -->
-    <string name="questions"><u>Bağlam ve soru ekle:</u></string>
-    <string name="add_question_hint">Bağlam veya soru</string>
+    <string name="add_name">Ekran adı</string>
+    <string name="add_explanation">Açıklama ekle</string>
+    <string name="add_question">Soru ekle</string>
+    <string name="add_answer">Cevabı gir</string>
+    <string name="add_start_image">Başlangıç resmi seç</string>
+    <string name="add_end_image">Bitiş resmi seç</string>
 
     <!-- Home Fragment -->
     <string name="play_button">OYNA</string>
     <string name="create_button">Kendi Modülünü Oluştur</string>
     <string name="sound_off">Sesi Kapat</string>
     <string name="sound_on">Sesi Aç</string>
+
+    <!-- Map Fragment Chapters -->
+    <string name="ch_cell">Hücre</string>
+    <string name="ch_mitosis">Mitoz</string>
+    <string name="ch_mayosis">Mayoz</string>
+    <string name="ch_reproduction">Hayvanlarda Üreme</string>
+    <string name="ch_force">Kuvvet</string>
+    <string name="ch_energy">Enerji</string>
+    <string name="ch_lens">Mercek</string>
+    <string name="ch_optic">Optik</string>
+    <string name="ch_recycle">Geri Dönüşüm</string>
+    <string name="ch_element">Element</string>
+    <string name="ch_substance">Bileşik</string>
+    <string name="ch_solution">Çözelti</string>
 
     <!-- Questions -->
     <string name="question1_title">İlk Balta</string>

@@ -1,18 +1,38 @@
 <resources>
-    <string name="app_name">wesapiens</string>
+    <string name="app_name">Olea</string>
     <string name="splash_text"><i>Science from world history</i></string>
     <string name="question_submit_button_text">OK</string>
     <string name="internet_connection_error">Internet connection cannot established. Connect to see more activities and stories!</string>
+    <string name="error">Error occured</string>
+    <string name="save">SAVE</string>
 
     <!--Create Game Fragment -->
-    <string name="questions"><u>Add context and questions:</u></string>
-    <string name="add_question_hint">Context or question</string>
+    <string name="add_name">Frame name</string>
+    <string name="add_explanation">Add explanation</string>
+    <string name="add_question">Add question</string>
+    <string name="add_answer">Enter answer</string>
+    <string name="add_start_image">Add starting image</string>
+    <string name="add_end_image">Add ending image</string>
 
     <!-- Home Fragment -->
     <string name="play_button">PLAY</string>
     <string name="create_button">Create Your Module</string>
     <string name="sound_off">Mute Sound</string>
     <string name="sound_on">Open Sound</string>
+
+    <!-- Map Fragment Chapters -->
+    <string name="ch_cell">Cell</string>
+    <string name="ch_mitosis">Mitosis</string>
+    <string name="ch_mayosis">Mayosis</string>
+    <string name="ch_reproduction">Reproduction</string>
+    <string name="ch_force">Force</string>
+    <string name="ch_energy">Energy</string>
+    <string name="ch_lens">Lens</string>
+    <string name="ch_optic">Optic</string>
+    <string name="ch_recycle">Recycling</string>
+    <string name="ch_element">Element</string>
+    <string name="ch_substance">Substance</string>
+    <string name="ch_solution">Solution</string>
 
     <!-- Questions -->
     <string name="question1_title">İlk Balta</string>

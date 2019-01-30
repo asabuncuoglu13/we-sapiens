@@ -1,14 +1,22 @@
 package com.alpay.wesapiens.models;
 
-import android.graphics.drawable.Drawable;
-
 public class MenuItem {
     String title;
-    Drawable image;
+    int image;
+    boolean isActive;
 
-    public MenuItem(String title, Drawable image) {
+    public MenuItem(String title, int image, boolean isActive) {
         this.title = title;
         this.image = image;
+        this.isActive = isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
+    public boolean isActive() {
+        return isActive;
     }
 
     public String getTitle() {
@@ -19,11 +27,11 @@ public class MenuItem {
         this.title = title;
     }
 
-    public Drawable getImage() {
+    public int getImage() {
         return image;
     }
 
-    public void setImage(Drawable image) {
+    public void setImage(int image) {
         this.image = image;
     }
 }
