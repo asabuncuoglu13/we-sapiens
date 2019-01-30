@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/menu_icon"
+        android:layout_width="@dimen/unit25"
+        android:layout_height="@dimen/unit25"
+        android:layout_gravity="center_vertical"
+        tools:src="@drawable/ic_energy"/>
+
+    <TextView
+        android:id="@+id/menu_text"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/unit25"
+        android:layout_gravity="center_vertical"
+        android:fontFamily="@font/mali_family"
+        tools:text="Energy"/>
+
+</LinearLayout>

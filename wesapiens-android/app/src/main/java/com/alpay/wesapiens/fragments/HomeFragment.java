@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.alpay.wesapiens.GameActivity;
 import com.alpay.wesapiens.R;
@@ -13,14 +14,22 @@ import com.alpay.wesapiens.utils.Utils;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+import okhttp3.internal.Util;
 
 public class HomeFragment extends Fragment {
 
     public View view;
     private Unbinder unbinder;
+
+    @BindView(R.id.sound_button)
+    LinearLayout soundLayout;
+
+    @BindView(R.id.mute_button)
+    LinearLayout muteLayout;
 
     @OnClick(R.id.play_button)
     public void playGame(){
@@ -35,6 +44,15 @@ public class HomeFragment extends Fragment {
     @OnClick(R.id.mute_button)
     public void mute(){
         Utils.muteMedia();
+        muteLayout.setVisibility(View.GONE);
+        soundLayout.setVisibility(View.VISIBLE);
+    }
+
+    @OnClick(R.id.sound_button)
+    public void openSound(){
+        Utils.openSoundMedia();
+        muteLayout.setVisibility(View.VISIBLE);
+        soundLayout.setVisibility(View.GONE);
     }
 
     public HomeFragment() {

@@ -58,7 +58,7 @@ public class Utils {
 
     public static void openSoundMedia(){
         mp_active = true;
-        mp.setVolume(100.0f,100.0f);
+        mp.setVolume(1.0f,1.0f);
     }
 
     public static void showOKDialog(AppCompatActivity activity, int stringID) {

@@ -34,8 +34,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="ic_energy" />
-                            <entry key="sourceFile" value="$PROJECT_DIR$/../../logo/F_enerji.svg" />
+                            <entry key="outputName" value="ic_speaker_off" />
+                            <entry key="sourceFile" value="$PROJECT_DIR$/app/src/main/res/drawable/speaker_off.svg" />
                           </map>
                         </option>
                       </PersistentState>

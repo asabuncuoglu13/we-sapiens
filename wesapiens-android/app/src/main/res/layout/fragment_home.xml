@@ -60,10 +60,12 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                app:srcCompat="@drawable/create_module"
+                app:srcCompat="@drawable/ic_speaker_off"
                 android:layout_width="@dimen/unit30"
                 android:layout_height="@dimen/unit30"
-                android:layout_gravity="center_vertical"/>
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="@dimen/unit10"
+                android:tint="@color/white"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -71,7 +73,35 @@
                 android:fontFamily="@font/mali_family"
                 android:textSize="@dimen/unit22"
                 android:layout_height="wrap_content"
-                android:text="MUTE"/>
+                android:text="@string/sound_off"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/sound_button"
+            android:visibility="gone"
+            android:orientation="horizontal"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="@dimen/unit10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                app:srcCompat="@drawable/ic_speaker"
+                android:layout_width="@dimen/unit30"
+                android:layout_height="@dimen/unit30"
+                android:layout_gravity="center_vertical"
+                android:tint="@color/white"
+                android:layout_marginRight="@dimen/unit10"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:fontFamily="@font/mali_family"
+                android:textSize="@dimen/unit22"
+                android:layout_height="wrap_content"
+                android:text="@string/sound_on"/>
 
         </LinearLayout>
 

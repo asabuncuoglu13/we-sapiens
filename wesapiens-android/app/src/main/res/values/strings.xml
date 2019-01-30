@@ -11,6 +11,8 @@
     <!-- Home Fragment -->
     <string name="play_button">PLAY</string>
     <string name="create_button">Create Your Module</string>
+    <string name="sound_off">Mute Sound</string>
+    <string name="sound_on">Open Sound</string>
 
     <!-- Questions -->
     <string name="question1_title">İlk Balta</string>

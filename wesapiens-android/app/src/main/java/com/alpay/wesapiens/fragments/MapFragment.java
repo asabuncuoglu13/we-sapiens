@@ -4,21 +4,22 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
+import android.widget.ImageView;
 
 import com.alpay.wesapiens.R;
-import com.alpay.wesapiens.view.PhysicsFlyoutMenu;
-
-import org.zakariya.flyoutmenu.FlyoutMenuView;
+import com.alpay.wesapiens.adapter.MenuListAdapter;
+import com.alpay.wesapiens.models.MenuItem;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.annotation.ColorInt;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 
 public class MapFragment extends Fragment {
@@ -26,15 +27,26 @@ public class MapFragment extends Fragment {
     public View view;
     private Unbinder unbinder;
 
-    @BindView(R.id.physics)
-    FlyoutMenuView physicsMenu;
+    @BindView(R.id.select_menu)
+    RecyclerView recyclerView;
 
-    @BindView(R.id.chemistry)
-    FlyoutMenuView chemistryMenu;
+    @OnClick(R.id.physics)
+    public void selectPhysicsTopic(){
+        preparePhysicsView();
+    }
 
-    @BindView(R.id.biology)
-    FlyoutMenuView biologyMenu;
+    @OnClick(R.id.chemistry)
+    public void selectChemistryTopic(){
+        prepareChemistryView();
+    }
 
+    @OnClick(R.id.biology)
+    public void selectBiologyTopic(){
+        prepareBiologyView();
+    }
+
+    ArrayList<MenuItem> menuDrawableCodes = new ArrayList<>();
+    MenuListAdapter menuListAdapter = new MenuListAdapter(menuDrawableCodes);
 
     public MapFragment() {
         // Required empty public constructor
@@ -44,14 +56,19 @@ public class MapFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_map, container, false);
         unbinder = ButterKnife.bind(this, view);
-        return  view;
+        return view;
+    }
+
+    private void setupRecylerView(MenuListAdapter adapter) {
+        recyclerView.setHasFixedSize(true);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
     }
 
     @Override
     public void onStart() {
-        preparePhysicsView();
-        //prepareChemistryView();
-        //prepareBiologyView();
         super.onStart();
     }
 
@@ -62,34 +79,33 @@ public class MapFragment extends Fragment {
     }
 
 
-    private void preparePhysicsView(){
-        int[] menuDrawableCodes = {
-                R.drawable.play,
-                R.drawable.ic_mitosis,
-                R.drawable.ic_mayosis,
-                R.drawable.ic_generation
-        };
-
-        @ColorInt int color = ContextCompat.getColor(getContext(), R.color.colorPrimary);
-        float fontSizeInMenu = getResources().getDimension(R.dimen.unit16);
-
-        List<PhysicsFlyoutMenu.MenuItem> menuItems = new ArrayList<>();
-        for (int code : menuDrawableCodes) {
-            menuItems.add(new PhysicsFlyoutMenu.MenuItem((AppCompatActivity) getActivity(), menuItems.size(), code, fontSizeInMenu, color));
-        }
-
-        physicsMenu.setLayout(new FlyoutMenuView.GridLayout(2, FlyoutMenuView.GridLayout.UNSPECIFIED));
-        physicsMenu.setAdapter(new FlyoutMenuView.ArrayAdapter<>(menuItems));
-
-        physicsMenu.setSelectionListener(new FlyoutMenuView.SelectionListener() {
-            @Override
-            public void onItemSelected(FlyoutMenuView flyoutMenuView, FlyoutMenuView.MenuItem item) {
-
-            }
-            @Override
-            public void onDismissWithoutSelection(FlyoutMenuView flyoutMenuView) {
-            }
-        });
+    private void preparePhysicsView() {
+        menuDrawableCodes.clear();
+        menuDrawableCodes.add(new MenuItem("Force", getResources().getDrawable(R.drawable.ic_cell)));
+        menuDrawableCodes.add(new MenuItem("Energy", getResources().getDrawable(R.drawable.ic_mitosis)));
+        menuDrawableCodes.add(new MenuItem("Machine", getResources().getDrawable(R.drawable.ic_mayosis)));
+        menuDrawableCodes.add(new MenuItem("Energy", getResources().getDrawable(R.drawable.ic_generation)));
+        menuListAdapter.notifyDataSetChanged();
+        setupRecylerView(menuListAdapter);
     }
 
+    private void prepareChemistryView() {
+        menuDrawableCodes.clear();
+        menuDrawableCodes.add(new MenuItem("Matter", getResources().getDrawable(R.drawable.ic_cell)));
+        menuDrawableCodes.add(new MenuItem("Elements", getResources().getDrawable(R.drawable.ic_mitosis)));
+        menuDrawableCodes.add(new MenuItem("Solutions", getResources().getDrawable(R.drawable.ic_mayosis)));
+        menuDrawableCodes.add(new MenuItem("Energy", getResources().getDrawable(R.drawable.ic_generation)));
+        menuListAdapter.notifyDataSetChanged();
+        setupRecylerView(menuListAdapter);
+    }
+
+    private void prepareBiologyView() {
+        menuDrawableCodes.clear();
+        menuDrawableCodes.add(new MenuItem("Cell", getResources().getDrawable(R.drawable.ic_cell)));
+        menuDrawableCodes.add(new MenuItem("Mitosis", getResources().getDrawable(R.drawable.ic_mitosis)));
+        menuDrawableCodes.add(new MenuItem("Mayosis", getResources().getDrawable(R.drawable.ic_mayosis)));
+        menuDrawableCodes.add(new MenuItem("Generation", getResources().getDrawable(R.drawable.ic_generation)));
+        menuListAdapter.notifyDataSetChanged();
+        setupRecylerView(menuListAdapter);
+    }
 }

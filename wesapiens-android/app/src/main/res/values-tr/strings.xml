@@ -11,6 +11,8 @@
     <!-- Home Fragment -->
     <string name="play_button">OYNA</string>
     <string name="create_button">Kendi Modülünü Oluştur</string>
+    <string name="sound_off">Sesi Kapat</string>
+    <string name="sound_on">Sesi Aç</string>
 
     <!-- Questions -->
     <string name="question1_title">İlk Balta</string>

@@ -16,31 +16,42 @@
             android:layout_height="wrap_content"
             android:text="@string/select_topic_header"/>
 
-        <org.zakariya.flyoutmenu.FlyoutMenuView
+        <ImageView
             android:id="@+id/physics"
             android:layout_width="@dimen/unit160"
             android:layout_height="@dimen/unit160"
             android:background="@drawable/physics"
-            app:fmButtonBackgroundColor="@color/transparent"
+            app:srcCompat="@drawable/physics"
             android:layout_toLeftOf="@+id/chemistry"
             android:layout_margin="@dimen/unit20"
             android:layout_centerVertical="true"/>
 
-        <org.zakariya.flyoutmenu.FlyoutMenuView
+        <ImageView
             android:id="@+id/chemistry"
             android:layout_width="@dimen/unit160"
             android:layout_height="@dimen/unit160"
-            app:fmButtonBackgroundColor="@color/darkGrey"
+            app:srcCompat="@drawable/chemistry"
             android:layout_centerInParent="true"/>
 
-        <org.zakariya.flyoutmenu.FlyoutMenuView
+        <ImageView
             android:id="@+id/biology"
             android:layout_width="@dimen/unit160"
             android:layout_height="@dimen/unit160"
-            app:fmButtonBackgroundColor="@color/darkGrey"
+            app:srcCompat="@drawable/biology"
             android:layout_toRightOf="@+id/chemistry"
             android:layout_margin="@dimen/unit20"
             android:layout_centerVertical="true"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/select_menu"
+            android:orientation="horizontal"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="@dimen/unit40"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/unit40">
+
+        </androidx.recyclerview.widget.RecyclerView>
 
     </RelativeLayout>
 </FrameLayout>
