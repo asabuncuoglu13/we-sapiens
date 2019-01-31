@@ -2,13 +2,10 @@ package com.alpay.wesapiens.base;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import com.alpay.wesapiens.R;
 import com.alpay.wesapiens.utils.Utils;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import java.io.IOException;
 
 import androidx.appcompat.app.AppCompatActivity;
 import butterknife.BindView;
@@ -30,22 +27,9 @@ public class FragmentHolderActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         ButterKnife.bind(this);
-        //checkInternetConnection();
         Utils.playSoundInLoop(this, R.raw.app);
         FragmentManager.openFragment(this, FragmentManager.HOME);
         backButton.bringToFront();
-    }
-
-    private void checkInternetConnection(){
-        try {
-            if(!Utils.isConnected()) {
-                Utils.showErrorToast(this, R.string.internet_connection_error, Toast.LENGTH_LONG);
-            }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override

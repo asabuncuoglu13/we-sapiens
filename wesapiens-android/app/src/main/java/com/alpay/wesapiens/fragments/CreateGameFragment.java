@@ -13,6 +13,7 @@ import com.alpay.wesapiens.R;
 import com.alpay.wesapiens.adapter.FrameListAdapter;
 import com.alpay.wesapiens.helper.OnStartDragListener;
 import com.alpay.wesapiens.helper.SimpleItemTouchHelperCallback;
+import com.alpay.wesapiens.models.Frame;
 import com.alpay.wesapiens.models.FrameHelper;
 import com.alpay.wesapiens.utils.Utils;
 
@@ -47,7 +48,7 @@ public class CreateGameFragment extends Fragment implements OnStartDragListener 
 
     @OnClick(R.id.add_new_frame_button)
     public void addNewFrame(){
-        frameListAdapter.addNewFrame();
+        frameListAdapter.addNewFrame(new Frame());
         recyclerView.scrollToPosition(FrameHelper.getFrameListSize() - 1);
     }
 
@@ -97,6 +98,8 @@ public class CreateGameFragment extends Fragment implements OnStartDragListener 
         ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(frameListAdapter);
         mItemTouchHelper = new ItemTouchHelper(callback);
         mItemTouchHelper.attachToRecyclerView(recyclerView);
+
+        recyclerView.scrollToPosition(FrameHelper.getFrameListSize() - 1);
     }
 
     @Override

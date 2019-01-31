@@ -4,8 +4,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Environment;
@@ -18,26 +16,18 @@ import android.widget.Toast;
 
 import com.alpay.wesapiens.R;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.ObjectOutputStream;
 import java.util.Arrays;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class Utils {
 
-    public static String SP_START_KEY_IS_PRESSED = "startKeyIsPressed";
     private static MediaPlayer mp;
     private static boolean mp_active = true;
     public static final int PICK_PHOTO = 1;
-
-    public static boolean isConnected() throws InterruptedException, IOException {
-        String command = "ping -c 1 google.com";
-        return (Runtime.getRuntime().exec(command).waitFor() == 0);
-    }
 
     public static void playSoundInLoop(AppCompatActivity appCompatActivity, int soundID){
         if(mp_active){
@@ -88,72 +78,6 @@ public class Utils {
         alert.show();
     }
 
-    public static void showOKDialog(final AppCompatActivity activity, int stringID, final Intent intent) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-        builder.setMessage(stringID)
-                .setCancelable(true)
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        if (intent != null) {
-                            activity.startActivity(intent);
-                        }
-                    }
-                });
-        AlertDialog alert = builder.create();
-        alert.show();
-    }
-
-    public static boolean isCameraAvailable(AppCompatActivity appCompatActivity) {
-        PackageManager pm = appCompatActivity.getPackageManager();
-        if (pm.hasSystemFeature(PackageManager.FEATURE_CAMERA)) {
-            return true;
-        }
-        return false;
-    }
-
-    public static void addStringToSharedPreferences(AppCompatActivity appCompatActivity, String key, String value) {
-        SharedPreferences settings = appCompatActivity.getSharedPreferences("wesapiens", 0);
-        SharedPreferences.Editor editor = settings.edit();
-        editor.putString(key, value);
-        editor.commit();
-    }
-
-    public static void addIntegerToSharedPreferences(AppCompatActivity appCompatActivity, String key, int value) {
-        SharedPreferences settings = appCompatActivity.getSharedPreferences("wesapiens", 0);
-        SharedPreferences.Editor editor = settings.edit();
-        editor.putInt(key, value);
-        editor.commit();
-    }
-
-    public static void addBooleanToSharedPreferences(AppCompatActivity appCompatActivity, String key, boolean value) {
-        SharedPreferences settings = appCompatActivity.getSharedPreferences("wesapiens", 0);
-        SharedPreferences.Editor editor = settings.edit();
-        editor.putBoolean(key, value);
-        editor.commit();
-    }
-
-    public static String getStringFromSharedPreferences(AppCompatActivity appCompatActivity, String key) {
-        SharedPreferences settings = appCompatActivity.getSharedPreferences("wesapiens", 0);
-        return settings.getString(key, "").toString();
-    }
-
-    public static int getIntegerFromSharedPreferences(AppCompatActivity appCompatActivity, String key) {
-        SharedPreferences settings = appCompatActivity.getSharedPreferences("wesapiens", 0);
-        return settings.getInt(key, 0);
-    }
-
-    public static boolean getBooleanFromSharedPreferences(AppCompatActivity appCompatActivity, String key) {
-        SharedPreferences settings = appCompatActivity.getSharedPreferences("wesapiens", 0);
-        return settings.getBoolean(key, false);
-    }
-
-    public static byte[] serialize(Object obj) throws IOException {
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        ObjectOutputStream os = new ObjectOutputStream(out);
-        os.writeObject(obj);
-        return out.toByteArray();
-    }
-
     public static void showErrorToast(AppCompatActivity activityCompat, int stringID, int duration) {
         LayoutInflater inflater = activityCompat.getLayoutInflater();
         View layout = inflater.inflate(R.layout.toast_error, (ViewGroup) activityCompat.findViewById(R.id.error_toast_container));
@@ -177,19 +101,6 @@ public class Utils {
         toast.setView(layout);
         toast.show();
     }
-
-    public static void showWarningToast(AppCompatActivity activityCompat, String text, int duration) {
-        LayoutInflater inflater = activityCompat.getLayoutInflater();
-        View layout = inflater.inflate(R.layout.toast_warning, (ViewGroup) activityCompat.findViewById(R.id.warning_toast_container));
-        TextView textview = (TextView) layout.findViewById(R.id.warning_toast_text);
-        textview.setText(text);
-        Toast toast = new Toast(activityCompat.getApplicationContext());
-        toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
-        toast.setDuration(duration);
-        toast.setView(layout);
-        toast.show();
-    }
-
 
     public static Drawable getDrawableWithName(Context context, String fileName) {
         Drawable drawable;
@@ -215,10 +126,11 @@ public class Utils {
         }
     }
 
-    public static void pickImage(AppCompatActivity appCompatActivity) {
+    public static String pickImage(AppCompatActivity appCompatActivity) {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("image/*");
         appCompatActivity.startActivityForResult(intent, PICK_PHOTO);
+        return "";
     }
 
     public static void saveImageDrawable(Drawable drawable){

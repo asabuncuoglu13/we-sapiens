@@ -3,8 +3,10 @@ package com.alpay.wesapiens.fragments;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
+import android.text.Spanned;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -182,7 +184,7 @@ public class QuestionDialogFragment extends DialogFragment {
     private void nextPage(){
         if(mCurrentBodyPosition < mQuestionBody.size() -1){
             mCurrentBodyPosition++;
-            questionDialogBody.setText(Html.fromHtml(mQuestionBody.get(mCurrentBodyPosition)));
+            questionDialogBody.setText(fromHtml(mQuestionBody.get(mCurrentBodyPosition)));
         }
         if(mCurrentBodyPosition == mQuestionBody.size() -1){
             questionEditText.setVisibility(View.VISIBLE);
@@ -194,12 +196,17 @@ public class QuestionDialogFragment extends DialogFragment {
     private void previousPage(){
         if(mCurrentBodyPosition > 0){
             mCurrentBodyPosition--;
-            questionDialogBody.setText(Html.fromHtml(mQuestionBody.get(mCurrentBodyPosition)));
+            questionDialogBody.setText(fromHtml(mQuestionBody.get(mCurrentBodyPosition)));
         }
     }
 
-    public void inflateError(){
-
+    @SuppressWarnings("deprecation")
+    public static Spanned fromHtml(String html){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            return Html.fromHtml(html, Html.FROM_HTML_MODE_LEGACY);
+        } else {
+            return Html.fromHtml(html);
+        }
     }
 
 }
