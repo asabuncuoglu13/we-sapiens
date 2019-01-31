@@ -15,6 +15,8 @@
     <string name="add_answer">Enter answer</string>
     <string name="add_start_image">Add starting image</string>
     <string name="add_end_image">Add ending image</string>
+    <string name="empty_area_error">Please provide an answer</string>
+    <string name="false_answer_text">Unfortunately wrong answer. Next time be more careful. Right answer was: </string>
 
     <!-- Home Fragment -->
     <string name="play_button">PLAY</string>
@@ -64,10 +66,10 @@
         Yüzey alanı daha dar olan ayakkabılar, kar yüzeyine daha fazla basınç uyguladığı için bu hassas zemin kolaylıkla çöker.
     </string>
     <string name="question2_question">
-        Peki, 48 kg olan bir insan karda batmamak için 600&lt;sup&gt;&lt;small&gt;2&lt;/small&gt;&lt;/sup&gt;lik bir yüzeye ihtiyaç duyuyorsa,
+        Peki, 48 kg olan bir insan karda batmamak için 600 cm&lt;sup&gt;&lt;small&gt;2&lt;/small&gt;&lt;/sup&gt;lik bir yüzeye ihtiyaç duyuyorsa,
         80 kg kütleye sahip bir insan kaç cm&lt;sup&gt;&lt;small&gt;2&lt;/small&gt;&lt;/sup&gt;\'lik bir yüzeye ihtiyaç duyar?
     </string>
-    <string name="question2_answer">100</string>
+    <string name="question2_answer">1000</string>
 
     <string name="question3_title">Fenikeliler(Kenaniler)</string>
     <string name="question3_time">MÖ 1200-330</string>
@@ -82,10 +84,10 @@
         Geminin maketini yaparak şekline bağlı olarak olması gereken ağırlığı da hesaplayabiliriz, böylece uygun olan ağacı seçmemiz kolaylaşır.
     </string>
     <string name="question3_question">
-        Peki, maket gemimizin suda kapladığı hacim 300 cm&lt;sup&gt;&lt;small&gt;3&lt;/small&gt;&lt;/sup&gt; ise
-        ve suyun yoğunluğu 1g/cm&lt;sup&gt;&lt;small&gt;3&lt;/small&gt;&lt;/sup&gt; ise bu maket geminin kütlesi kaç gramdır?
+        Peki, maket gemimizin suda kapladığı hacim 300 cm&lt;sup&gt;&lt;small&gt;3&lt;/small&gt;&lt;/sup&gt;
+        ve suyun yoğunluğu 1g/cm&lt;sup&gt;&lt;small&gt;3&lt;/small&gt;&lt;/sup&gt; ise bu maket geminin kütlesi en az kaç gramdır?
     </string>
-    <string name="question3_answer">100</string>
+    <string name="question3_answer">300</string>
 
     <string name="question4_title">İlk Kadın Olimpiyat Şampiyonu Kyneska</string>
     <string name="question4_time">MÖ 396</string>
@@ -98,7 +100,7 @@
         Şu anda da bir güç birimi olarak kullanılan beygir gücü bir atın 75 kg\'lık bir cismi 1 metre boyunca 1 saniyede çekmesi için gereken gücü temsil eder.
     </string>
     <string name="question4_question">Peki Kyneska\'nın o dönemki yarış arabası kendisi de dahil 300 kg ise 50 metrelik parkuru 4 beygir kaç saniyede tamamlamıştır?</string>
-    <string name="question4_answer">100</string>
+    <string name="question4_answer">50</string>
 
     <string name="question5_title">Sümerler ve Tekerin İcadı</string>
     <string name="question5_time">MÖ 4000 - MÖ 2000</string>
@@ -113,8 +115,8 @@
         Sümerler bulunduğu coğrafya sayesinde tarımda da çok ilerlemiş, at ve öküzlerin çekebileceği güzel araçlar yapmışlardır.
         Bir önceki soruda beygir gücünden bahsetmiştik, öküzler atlara göre çok daha güçlü hayvanlardır.
     </string>
-    <string name="question5_question">Resimdeki öküzler 600 kg\'lık yükü 60 metre boyunca 30 saniyede geçebiliyorsa, bir öküz kaç at gücündedir?</string>
-    <string name="question5_answer">100</string>
+    <string name="question5_question">Resimdeki iki öküz 600 kg\'lık yükü 60 metre boyunca 60 saniyede geçebiliyorsa, bir öküz kaç at gücündedir?</string>
+    <string name="question5_answer">4</string>
 
     <!-- Select Topic Fragment-->
     <string name="select_topic_header">Select A Topic</string>

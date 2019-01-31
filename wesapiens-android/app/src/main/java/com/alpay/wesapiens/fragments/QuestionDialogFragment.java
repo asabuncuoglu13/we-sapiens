@@ -169,7 +169,7 @@ public class QuestionDialogFragment extends DialogFragment {
 
     private void checkAnswer(){
         if(questionEditText.getText().toString().isEmpty()){
-            Utils.showWarningToast((AppCompatActivity) getActivity(), R.string.error, Toast.LENGTH_SHORT);
+            Utils.showWarningToast((AppCompatActivity) getActivity(), R.string.empty_area_error, Toast.LENGTH_SHORT);
         }else{
             int userAnswer= Integer.valueOf(questionEditText.getText().toString());
             if(userAnswer == Integer.valueOf(mAnswer)){
@@ -184,7 +184,7 @@ public class QuestionDialogFragment extends DialogFragment {
     private void nextPage(){
         if(mCurrentBodyPosition < mQuestionBody.size() -1){
             mCurrentBodyPosition++;
-            questionDialogBody.setText(fromHtml(mQuestionBody.get(mCurrentBodyPosition)));
+            questionDialogBody.setText(Utils.fromHtml(mQuestionBody.get(mCurrentBodyPosition)));
         }
         if(mCurrentBodyPosition == mQuestionBody.size() -1){
             questionEditText.setVisibility(View.VISIBLE);
@@ -196,17 +196,7 @@ public class QuestionDialogFragment extends DialogFragment {
     private void previousPage(){
         if(mCurrentBodyPosition > 0){
             mCurrentBodyPosition--;
-            questionDialogBody.setText(fromHtml(mQuestionBody.get(mCurrentBodyPosition)));
+            questionDialogBody.setText(Utils.fromHtml(mQuestionBody.get(mCurrentBodyPosition)));
         }
     }
-
-    @SuppressWarnings("deprecation")
-    public static Spanned fromHtml(String html){
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            return Html.fromHtml(html, Html.FROM_HTML_MODE_LEGACY);
-        } else {
-            return Html.fromHtml(html);
-        }
-    }
-
 }

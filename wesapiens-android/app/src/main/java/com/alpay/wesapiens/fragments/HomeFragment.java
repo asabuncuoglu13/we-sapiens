@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
+import android.widget.ImageView;
 
 import com.alpay.wesapiens.R;
 import com.alpay.wesapiens.base.FragmentManager;
@@ -23,10 +23,10 @@ public class HomeFragment extends Fragment {
     private Unbinder unbinder;
 
     @BindView(R.id.sound_button)
-    LinearLayout soundLayout;
+    ImageView soundLayout;
 
     @BindView(R.id.mute_button)
-    LinearLayout muteLayout;
+    ImageView muteLayout;
 
     @OnClick(R.id.play_button)
     public void playGame(){
@@ -36,6 +36,11 @@ public class HomeFragment extends Fragment {
     @OnClick(R.id.create_game_button)
     public void createGame(){
         FragmentManager.openFragment((AppCompatActivity) getActivity(), FragmentManager.CREATE_GAME);
+    }
+
+    @OnClick(R.id.close_button)
+    public void closeApplication(){
+        getActivity().onBackPressed();
     }
 
     @OnClick(R.id.mute_button)

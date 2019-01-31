@@ -129,8 +129,8 @@ public class FrameListAdapter extends RecyclerView.Adapter<FrameListAdapter.Item
         holder.frameSavedName.setText(mItems.get(position).getFrameName());
         holder.frameSavedTime.setText(mItems.get(position).getFrameTime());
         holder.frameSavedPlace.setText(mItems.get(position).getFramePlace());
-        holder.frameSavedContext.setText(mItems.get(position).getFrameContext());
-        holder.frameSavedQuestion.setText(mItems.get(position).getFrameQuestion());
+        holder.frameSavedContext.setText(Utils.fromHtml(mItems.get(position).getFrameContext()));
+        holder.frameSavedQuestion.setText(Utils.fromHtml(mItems.get(position).getFrameQuestion()));
         holder.frameSavedAnswer.setText(mItems.get(position).getFrameAnswer());
         holder.frameSavedStartImage.setImageDrawable(Utils.getDrawableWithName(mAppCompatActivity, mItems.get(position).getFrameStartImage()));
         holder.frameSavedEndImage.setImageDrawable(Utils.getDrawableWithName(mAppCompatActivity, mItems.get(position).getFrameEndImage()));

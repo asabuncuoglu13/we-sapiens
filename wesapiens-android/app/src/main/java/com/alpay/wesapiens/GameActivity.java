@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alpay.wesapiens.fragments.QuestionDialogFragment;
 import com.alpay.wesapiens.models.Frame;
@@ -151,7 +152,8 @@ public class GameActivity extends AppCompatActivity implements QuestionDialogFra
             Utils.playSoundOnce(this, R.raw.success);
             chapterImage.setImageDrawable(Utils.getDrawableWithName(this, frameList.get(currentFramePosition).getFrameEndImage()));
         } else {
-
+            Utils.showWarningToast(this, getResources().getString(R.string.false_answer_text)
+                    + " " + frameList.get(currentFramePosition).getFrameAnswer(), Toast.LENGTH_LONG);
         }
         currentFramePosition++;
         if (currentFramePosition < frameList.size()) {

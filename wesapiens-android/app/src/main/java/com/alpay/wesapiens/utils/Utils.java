@@ -6,7 +6,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Environment;
+import android.text.Html;
+import android.text.Spanned;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +31,16 @@ public class Utils {
     private static MediaPlayer mp;
     private static boolean mp_active = true;
     public static final int PICK_PHOTO = 1;
+
+    @SuppressWarnings("deprecation")
+    public static Spanned fromHtml(String html){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            return Html.fromHtml(html, Html.FROM_HTML_MODE_LEGACY);
+        } else {
+            return Html.fromHtml(html);
+        }
+    }
+
 
     public static void playSoundInLoop(AppCompatActivity appCompatActivity, int soundID){
         if(mp_active){
@@ -95,6 +108,18 @@ public class Utils {
         View layout = inflater.inflate(R.layout.toast_warning, (ViewGroup) activityCompat.findViewById(R.id.warning_toast_container));
         TextView text = (TextView) layout.findViewById(R.id.warning_toast_text);
         text.setText(activityCompat.getResources().getString(stringID));
+        Toast toast = new Toast(activityCompat.getApplicationContext());
+        toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+        toast.setDuration(duration);
+        toast.setView(layout);
+        toast.show();
+    }
+
+    public static void showWarningToast(AppCompatActivity activityCompat, String text, int duration) {
+        LayoutInflater inflater = activityCompat.getLayoutInflater();
+        View layout = inflater.inflate(R.layout.toast_warning, (ViewGroup) activityCompat.findViewById(R.id.warning_toast_container));
+        TextView textView = (TextView) layout.findViewById(R.id.warning_toast_text);
+        textView.setText(text);
         Toast toast = new Toast(activityCompat.getApplicationContext());
         toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
         toast.setDuration(duration);
