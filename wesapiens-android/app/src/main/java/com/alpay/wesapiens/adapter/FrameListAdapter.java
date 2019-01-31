@@ -35,7 +35,10 @@ public class FrameListAdapter extends RecyclerView.Adapter<FrameListAdapter.Item
     private String fName;
     private String fStartImage;
     private String fEndImage;
-    private String[] fQuestions = new String[2];
+    private String fContext;
+    private String fTime;
+    private String fPlace;
+    private String fQuestion;
     private String fAnswer;
 
     private final OnStartDragListener mDragStartListener;
@@ -86,10 +89,9 @@ public class FrameListAdapter extends RecyclerView.Adapter<FrameListAdapter.Item
             @Override
             public void onClick(View v) {
                 fName = holder.frameName.getText().toString();
-                fQuestions[0] = holder.frameContext.getText().toString();
-                fQuestions[1] = holder.frameQuestion.getText().toString();
+                fQuestion = holder.frameQuestion.getText().toString();
                 fAnswer = holder.frameAnswer.getText().toString();
-                FrameHelper.addNewFrame(new Frame(1, fName, fStartImage, fEndImage, fQuestions, fAnswer));
+                FrameHelper.addNewFrame(new Frame(1, fName, fTime, fPlace, fStartImage, fEndImage, fContext, fQuestion, fAnswer));
                 addNewFrame();
             }
         });

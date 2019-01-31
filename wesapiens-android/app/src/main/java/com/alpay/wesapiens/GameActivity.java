@@ -7,11 +7,12 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.alpay.wesapiens.fragments.QuestionDialogFragment;
 import com.alpay.wesapiens.models.Frame;
 import com.alpay.wesapiens.models.FrameHelper;
+import com.alpay.wesapiens.utils.Constants;
 import com.alpay.wesapiens.utils.Utils;
 
 import java.util.List;
@@ -35,9 +36,39 @@ public class GameActivity extends AppCompatActivity implements QuestionDialogFra
     @BindView(R.id.timeplace_layout)
     LinearLayout timePlaceLayout;
 
+    @BindView(R.id.date_text)
+    TextView dateInfoText;
+
+    @BindView(R.id.place_text)
+    TextView placeInfoText;
+
     @OnClick(R.id.back_button)
     public void backButtonAction() {
         quitGame();
+    }
+
+    @BindView(R.id.complete_button)
+    LinearLayout completeButton;
+
+    @OnClick(R.id.complete_button)
+    public void closeGameScreen(){
+        saveAndQuit();
+    }
+
+    @BindView(R.id.next_button)
+    LinearLayout nextButton;
+
+    @OnClick(R.id.next_button)
+    public void nextQuestion(){
+        showTimePlaceLayout();
+        prepareView(frameList.get(currentFramePosition));
+        nextButton.setClickable(false);
+        nextButton.animate().alpha(0.0f).setDuration(500).withEndAction(new Runnable() {
+            @Override
+            public void run() {
+                nextButton.setVisibility(View.GONE);
+            }
+        });
     }
 
     @Override
@@ -46,9 +77,15 @@ public class GameActivity extends AppCompatActivity implements QuestionDialogFra
         setContentView(R.layout.activity_game);
         ButterKnife.bind(this);
         timePlaceLayout.bringToFront();
-        frameList = FrameHelper.listAll();
+        frameList = FrameHelper.listAll(this);
         questionDialogFragment = QuestionDialogFragment.newInstance();
         prepareView(frameList.get(currentFramePosition));
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        showTimePlaceLayout();
     }
 
     // To sync with FirebaseDB
@@ -85,8 +122,11 @@ public class GameActivity extends AppCompatActivity implements QuestionDialogFra
                 .setNegativeButton(resources.getString(R.string.no), dialogClickListener).show();
     }
 
+    private void saveAndQuit(){
+        super.onBackPressed();
+    }
+
     public void prepareView(Frame frame) {
-        Utils.playSound(this, R.raw.strongwind);
         chapterImage.setImageDrawable(Utils.getDrawableWithName(this, frame.getFrameStartImage()));
         new Handler().postDelayed(() -> {
             if (!cancelPreparation) {
@@ -96,7 +136,7 @@ public class GameActivity extends AppCompatActivity implements QuestionDialogFra
         new Handler().postDelayed(() -> {
             if (!cancelPreparation) {
                 questionDialogFragment.setQuestionDialogTitle(frame.getFrameName());
-                questionDialogFragment.setQuestionDialogBody(frame.getFrameQuestionArray());
+                questionDialogFragment.setQuestionDialogBody(frame.getFrameContext(), frame.getFrameQuestion());
                 questionDialogFragment.setQuestionAnswer(frame.getFrameAnswer());
                 questionDialogFragment.setCancelable(false);
                 questionDialogFragment.show(getSupportFragmentManager(), "questionDialogFragment");
@@ -107,28 +147,31 @@ public class GameActivity extends AppCompatActivity implements QuestionDialogFra
 
     @Override
     public void onFinishDialog(String inputText) {
-        Utils.showWarningToast(this, inputText, Toast.LENGTH_SHORT);
-        chapterImage.setImageDrawable(Utils.getDrawableWithName(this, frameList.get(currentFramePosition).getFrameEndImage()));
-        nextFrame();
-    }
+        if(inputText.contentEquals(Constants.CORRECT_ANSWER)){
+            Utils.playSoundOnce(this, R.raw.success);
+            chapterImage.setImageDrawable(Utils.getDrawableWithName(this, frameList.get(currentFramePosition).getFrameEndImage()));
+        } else {
 
-    private void nextFrame() {
+        }
         currentFramePosition++;
-        new Handler().postDelayed(() -> {
-            if (frameList.get(currentFramePosition) != null) {
-                Utils.stopMediaPlayer();
-                showTimePlaceLayout();
-                prepareView(frameList.get(currentFramePosition));
-            }
-        }, 3000);
+        if (currentFramePosition < frameList.size()) {
+            nextButton.setVisibility(View.VISIBLE);
+            nextButton.setClickable(true);
+            nextButton.animate().alpha(1.0f);
+        }else{
+            chapterImage.setImageDrawable(Utils.getDrawableWithName(this, frameList.get(currentFramePosition-1).getFrameEndImage()));
+            completeButton.setVisibility(View.VISIBLE);
+        }
     }
 
     private void showTimePlaceLayout() {
         timePlaceLayout.animate().alpha(1.0f).setDuration(500);
+        dateInfoText.setText(frameList.get(currentFramePosition).getFrameTime());
+        placeInfoText.setText(frameList.get(currentFramePosition).getFramePlace());
     }
 
     private void hideTimePlaceLayout() {
-        timePlaceLayout.animate().alpha(0.0f).setDuration(1000);
+        timePlaceLayout.animate().alpha(0.0f).setDuration(500);
     }
 
     @Override
@@ -150,10 +193,4 @@ public class GameActivity extends AppCompatActivity implements QuestionDialogFra
                         | View.SYSTEM_UI_FLAG_FULLSCREEN);
     }
 
-    @Override
-    protected void onDestroy() {
-        Utils.stopMediaPlayer();
-        Utils.playSound(this, R.raw.app);
-        super.onDestroy();
-    }
 }

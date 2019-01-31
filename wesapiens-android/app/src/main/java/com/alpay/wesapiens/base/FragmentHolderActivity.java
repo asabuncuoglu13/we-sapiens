@@ -30,8 +30,8 @@ public class FragmentHolderActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         ButterKnife.bind(this);
-        checkInternetConnection();
-        Utils.playSound(this, R.raw.app);
+        //checkInternetConnection();
+        Utils.playSoundInLoop(this, R.raw.app);
         FragmentManager.openFragment(this, FragmentManager.HOME);
         backButton.bringToFront();
     }

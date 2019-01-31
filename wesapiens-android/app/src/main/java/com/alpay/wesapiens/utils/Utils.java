@@ -39,11 +39,19 @@ public class Utils {
         return (Runtime.getRuntime().exec(command).waitFor() == 0);
     }
 
-    public static void playSound(AppCompatActivity appCompatActivity, int soundID){
+    public static void playSoundInLoop(AppCompatActivity appCompatActivity, int soundID){
         if(mp_active){
             mp = MediaPlayer.create(appCompatActivity, soundID);
             mp.setLooping(true);
             mp.start();
+        }
+    }
+
+    public static void playSoundOnce(AppCompatActivity appCompatActivity, int soundID){
+        if(mp_active){
+            MediaPlayer mediaPlayer = MediaPlayer.create(appCompatActivity, soundID);
+            mediaPlayer.setLooping(false);
+            mediaPlayer.start();
         }
     }
 
@@ -60,6 +68,11 @@ public class Utils {
     public static void openSoundMedia(){
         mp_active = true;
         mp.setVolume(1.0f,1.0f);
+    }
+
+    public static String[] splitParagraphToSentences(String text){
+        String[] words = text.split("\\.");
+        return words;
     }
 
     public static void showOKDialog(AppCompatActivity activity, int stringID) {

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/warning_toast_container"
     android:layout_width="wrap_content"
-    android:layout_height="@dimen/unit60"
+    android:layout_height="wrap_content"
     android:background="@drawable/warningtoastshape"
     android:orientation="horizontal"
     android:padding="8dp">
@@ -12,8 +12,8 @@
         android:layout_width="@dimen/unit50"
         android:layout_height="@dimen/unit50"
         android:layout_gravity="center_vertical"
-        android:layout_marginLeft="@dimen/unit10"
-        android:layout_marginRight="8dp"
+        android:layout_marginLeft="@dimen/unit8"
+        android:layout_marginRight="@dimen/unit8"
         app:srcCompat="@drawable/warning_icon"
         android:tint="@color/white" />
 
@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginLeft="@dimen/unit10"
-        android:layout_marginRight="@dimen/unit10" />
+        android:layout_marginLeft="@dimen/unit8"
+        android:layout_marginRight="@dimen/unit8" />
 
 </LinearLayout>

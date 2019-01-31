@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,10 +14,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alpay.wesapiens.R;
 import com.alpay.wesapiens.listener.OnSwipeTouchListener;
+import com.alpay.wesapiens.utils.Constants;
+import com.alpay.wesapiens.utils.Utils;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -29,8 +38,9 @@ public class QuestionDialogFragment extends DialogFragment {
     private Unbinder unbinder;
     private String mAnswer;
     private String mQuestionTitle;
-    private String[] mQuestionBody;
+    private List<String> mQuestionBody;
     private int mCurrentBodyPosition = 0;
+    private String mResult;
 
     @BindView(R.id.question_dialog_title)
     TextView questionDialogTitle;
@@ -94,11 +104,14 @@ public class QuestionDialogFragment extends DialogFragment {
                 super.onSwipeRight();
             }
         });
+        mCurrentBodyPosition = 0;
         questionDialogTitle.setText(mQuestionTitle);
-        questionDialogBody.setText(mQuestionBody[0]);
+        questionDialogBody.setText(mQuestionBody.get(mCurrentBodyPosition));
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         getDialog().getWindow().setGravity(Gravity.RIGHT | Gravity.TOP);
         WindowManager.LayoutParams layoutParams = getDialog().getWindow().getAttributes();
+        layoutParams.x = 100; // right margin
+        layoutParams.y = 100; // top margin
         getDialog().getWindow().setAttributes(layoutParams);
         return view;
     }
@@ -123,7 +136,7 @@ public class QuestionDialogFragment extends DialogFragment {
     @Override
     public void onDismiss(DialogInterface dialog) {
         QuestionDialogListener listener = (QuestionDialogListener) getActivity();
-        listener.onFinishDialog(questionEditText.getText().toString());
+        listener.onFinishDialog(mResult);
         super.onDismiss(dialog);
     }
 
@@ -137,8 +150,11 @@ public class QuestionDialogFragment extends DialogFragment {
         mQuestionTitle = title;
     }
 
-    public void setQuestionDialogBody(String[] body){
-        mQuestionBody = body;
+    public void setQuestionDialogBody(String context, String question){
+        mQuestionBody = new ArrayList<>();
+        String[] contextSentences = Utils.splitParagraphToSentences(context);
+        mQuestionBody.addAll(Arrays.asList(contextSentences));
+        mQuestionBody.add(question);
     }
 
     public void setQuestionAnswer(String answer){
@@ -150,16 +166,27 @@ public class QuestionDialogFragment extends DialogFragment {
     }
 
     private void checkAnswer(){
-        dismiss();
+        if(questionEditText.getText().toString().isEmpty()){
+            Utils.showWarningToast((AppCompatActivity) getActivity(), R.string.error, Toast.LENGTH_SHORT);
+        }else{
+            int userAnswer= Integer.valueOf(questionEditText.getText().toString());
+            if(userAnswer == Integer.valueOf(mAnswer)){
+                mResult = Constants.CORRECT_ANSWER;
+            }else{
+                mResult = Constants.WRONG_ANSWER;
+            }
+            dismiss();
+        }
     }
 
     private void nextPage(){
-        if(mCurrentBodyPosition < mQuestionBody.length -1){
+        if(mCurrentBodyPosition < mQuestionBody.size() -1){
             mCurrentBodyPosition++;
-            questionDialogBody.setText(mQuestionBody[mCurrentBodyPosition]);
+            questionDialogBody.setText(Html.fromHtml(mQuestionBody.get(mCurrentBodyPosition)));
         }
-        if(mCurrentBodyPosition == mQuestionBody.length -1){
+        if(mCurrentBodyPosition == mQuestionBody.size() -1){
             questionEditText.setVisibility(View.VISIBLE);
+            questionEditText.setText("");
             submitButton.setVisibility(View.VISIBLE);
         }
     }
@@ -167,7 +194,7 @@ public class QuestionDialogFragment extends DialogFragment {
     private void previousPage(){
         if(mCurrentBodyPosition > 0){
             mCurrentBodyPosition--;
-            questionDialogBody.setText(mQuestionBody[mCurrentBodyPosition]);
+            questionDialogBody.setText(Html.fromHtml(mQuestionBody.get(mCurrentBodyPosition)));
         }
     }
 

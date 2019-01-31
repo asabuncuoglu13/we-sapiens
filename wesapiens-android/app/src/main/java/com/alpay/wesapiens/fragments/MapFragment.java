@@ -11,6 +11,7 @@ import com.alpay.wesapiens.models.MenuItem;
 
 import java.util.ArrayList;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -43,7 +44,7 @@ public class MapFragment extends Fragment {
     }
 
     ArrayList<MenuItem> menuDrawableCodes = new ArrayList<>();
-    MenuListAdapter menuListAdapter = new MenuListAdapter(menuDrawableCodes);
+    MenuListAdapter menuListAdapter;
 
     public MapFragment() {
         // Required empty public constructor
@@ -53,6 +54,7 @@ public class MapFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_map, container, false);
         unbinder = ButterKnife.bind(this, view);
+        menuListAdapter = new MenuListAdapter((AppCompatActivity) getActivity(), menuDrawableCodes);
         return view;
     }
 

@@ -4,21 +4,27 @@ public class Frame {
 
     int frameID;
     String frameName;
+    String frameTime;
+    String framePlace;
     String frameStartImage;
     String frameEndImage;
-    String[] frameQuestionArray;
+    String frameContext;
+    String frameQuestion;
     String frameAnswer;
 
     public Frame() {
 
     }
 
-    public Frame(int frameID, String frameName, String frameStartImage, String frameEndImage, String[] questions, String answer) {
+    public Frame(int frameID, String frameName, String frameTime, String framePlace, String frameStartImage, String frameEndImage, String context, String question, String answer) {
         this.frameID = frameID;
         this.frameName = frameName;
+        this.frameTime = frameTime;
+        this.framePlace = framePlace;
         this.frameStartImage = frameStartImage;
         this.frameEndImage = frameEndImage;
-        this.frameQuestionArray = questions;
+        this.frameContext = context;
+        this.frameQuestion = question;
         this.frameAnswer = answer;
     }
 
@@ -54,19 +60,43 @@ public class Frame {
         this.frameStartImage = frameStartImage;
     }
 
-    public String[] getFrameQuestionArray() {
-        return frameQuestionArray;
-    }
-
-    public void setFrameQuestionArray(String[] frameQuestionArray) {
-        this.frameQuestionArray = frameQuestionArray;
-    }
-
     public String getFrameAnswer() {
         return frameAnswer;
     }
 
     public void setFrameAnswer(String frameAnswer) {
         this.frameAnswer = frameAnswer;
+    }
+
+    public String getFrameContext() {
+        return frameContext;
+    }
+
+    public void setFrameContext(String frameContext) {
+        this.frameContext = frameContext;
+    }
+
+    public String getFrameQuestion() {
+        return frameQuestion;
+    }
+
+    public void setFrameQuestion(String frameQuestion) {
+        this.frameQuestion = frameQuestion;
+    }
+
+    public String getFrameTime() {
+        return frameTime;
+    }
+
+    public void setFrameTime(String frameTime) {
+        this.frameTime = frameTime;
+    }
+
+    public String getFramePlace() {
+        return framePlace;
+    }
+
+    public void setFramePlace(String framePlace) {
+        this.framePlace = framePlace;
     }
 }

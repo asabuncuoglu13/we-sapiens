@@ -1,8 +1,10 @@
 package com.alpay.wesapiens.models;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.util.Log;
 
+import com.alpay.wesapiens.R;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -18,14 +20,14 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 public class FrameHelper {
 
     static List<Frame> frameList = new ArrayList<>();
-    static String[] questions = {"Question 1", "Question 2", "Question 3"};
-    static String answers = "Answer 1";
     static Gson gson = new GsonBuilder().create();
-    static int currentFramePosition = 0;
     static Type frameListType = new TypeToken<ArrayList<Frame>>(){}.getType();
+    static Resources resources;
 
     private static void writeToFile(String data, Context context) {
         try {
@@ -69,14 +71,6 @@ public class FrameHelper {
         return data;
     }
 
-    public static int getCurrentFramePosition() {
-        return currentFramePosition;
-    }
-
-    public static void setCurrentFramePosition(int currentFramePosition) {
-        FrameHelper.currentFramePosition = currentFramePosition;
-    }
-
     public static int getFrameListSize(){
         return frameList.size();
     }
@@ -90,13 +84,49 @@ public class FrameHelper {
         return frameList;
     }
 
-    public static List<Frame> listAll(){
+    public static List<Frame> listAll(AppCompatActivity appCompatActivity){
+        resources = appCompatActivity.getResources();
         if(frameList.isEmpty()){
-            frameList.add(new Frame(1,"Frame Name 1", "1.png", "2.png", questions, answers));
-            frameList.add(new Frame(2,"Frame Name 2", "3.png", "4.png", questions, answers));
-            frameList.add(new Frame(1,"Frame Name 1", "5.png", "6.png", questions, answers));
-            frameList.add(new Frame(2,"Frame Name 2", "7.png", "8.png", questions, answers));
-            frameList.add(new Frame(1,"Frame Name 1", "9.png", "10.png", questions, answers));
+            frameList.add(new Frame(1,
+                    resources.getString(R.string.question1_title),
+                    resources.getString(R.string.question1_time),
+                    resources.getString(R.string.question1_place),
+                    "1.png", "2.png",
+                    resources.getString(R.string.question1_context),
+                    resources.getString(R.string.question1_question),
+                    resources.getString(R.string.question1_answer)));
+            frameList.add(new Frame(2,
+                    resources.getString(R.string.question2_title),
+                    resources.getString(R.string.question2_time),
+                    resources.getString(R.string.question2_place),
+                    "3.png", "4.png",
+                    resources.getString(R.string.question2_context),
+                    resources.getString(R.string.question2_question),
+                    resources.getString(R.string.question2_answer)));
+            frameList.add(new Frame(3,
+                    resources.getString(R.string.question3_title),
+                    resources.getString(R.string.question3_time),
+                    resources.getString(R.string.question3_place),
+                    "5.png", "6.png",
+                    resources.getString(R.string.question3_context),
+                    resources.getString(R.string.question3_question),
+                    resources.getString(R.string.question3_answer)));
+            frameList.add(new Frame(4,
+                    resources.getString(R.string.question4_title),
+                    resources.getString(R.string.question4_time),
+                    resources.getString(R.string.question4_place),
+                    "7.png", "8.png",
+                    resources.getString(R.string.question4_context),
+                    resources.getString(R.string.question4_question),
+                    resources.getString(R.string.question4_answer)));
+            frameList.add(new Frame(5,
+                    resources.getString(R.string.question5_title),
+                    resources.getString(R.string.question5_time),
+                    resources.getString(R.string.question5_place),
+                    "9.png", "50.png",
+                    resources.getString(R.string.question5_context),
+                    resources.getString(R.string.question5_question),
+                    resources.getString(R.string.question5_answer)));
         }
         return frameList;
     }
